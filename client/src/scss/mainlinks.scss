@@ -1,0 +1,29 @@
+// Predefined Break-points
+$mediaMaxWidth: 1260px;
+$mediaBp1Width: 992px;
+$mediaBp2Width: 768px;
+$mediaMinWidth: 480px;
+
+.cf {
+  position:relative;
+  height:150px;
+  width:150px;
+  margin:0 auto;
+}
+
+.cf img {
+  position:absolute;
+  left:0;
+  width:150px;
+  -webkit-transition: opacity 0.8s ease-in-out;
+  -moz-transition: opacity 0.8s ease-in-out;
+  -o-transition: opacity 0.8s ease-in-out;
+  transition: opacity 0.8s ease-in-out;
+  transition-timing-function: ease;
+  /* Also the same as */
+  /* transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); */
+}
+
+.cf img.top:hover {
+  opacity:0;
+}

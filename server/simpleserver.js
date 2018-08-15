@@ -1,0 +1,112 @@
+var express = require('express');
+var app = express();
+
+app.use(express.json());       // to support JSON-encoded bodies
+app.use(express.urlencoded()); // to support URL-encoded bodies
+
+//app.use('/', express.static('public'));
+
+
+const low = require('lowdb')
+const FileSync = require('lowdb/adapters/FileSync')
+
+const adapter = new FileSync('db.json')
+const db = low(adapter)
+
+
+db.defaults({ requests: [], functionCalls:  [], leads: []}).write()
+ 
+/*
+
+
+app.get('/sandbox', (req,res)=>{
+    let r = db.get('requests')
+        .filter({'complete': false})
+        .value();
+
+
+
+
+
+    let result = Object.keys(r).map(function(key) {
+        return [r[key]];
+    });
+
+    res.send({
+
+        data:result
+    });
+});
+
+app.get('/getRequests', (req,res)=>{
+    let z = db.get('requests')
+        //.find({})
+        .value();
+
+    for(let reqIdx = 0; reqIdx < z.length; reqIdx++){
+        console.log(z[reqIdx]);
+    }
+
+    res.send(z);
+});
+
+app.get('/getFunctionCalls', (req,res)=>{
+    let z = db.get('functionCalls')
+        //.find({})
+        .value();
+    for(let callIdx = 0; callIdx < z.length; callIdx++){
+        console.log(z[callIdx]);
+
+    }
+
+
+
+    res.send(z);
+});
+
+
+app.post('/recordRequest', (req, res) => {
+    console.log(req.body);
+
+    req.body.complete = false;
+    db.get('requests')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+app.post('/recordFunctionCall', (req, res)=>{
+    console.log(req.body);
+    req.body.complete = false;
+    db.get('functionCalls')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+*/
+
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+ });
+
+app.post('/api/leads', (req, res)=>{
+    
+    console.log("qq");
+    req.body.complete = false;
+    db.get('leads')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+
+app.listen(3001);

@@ -1,0 +1,42 @@
+.navlink, .navlink:visited {
+  color: #444;
+  -webkit-transition: color 0.5s; /* Safari */
+  transition: color 0.5s;
+}
+.navlink:hover {
+  color: #1fccdc;
+  background-color: transparent;
+  -webkit-transition: color 0.5s; /* Safari */
+  transition: color 0.5s;
+}
+.navlink-current, .navlink-current:visited {
+  color: #1fccdc;
+  -webkit-transition: color 0.5s; /* Safari */
+  transition: color 0.5s;
+}
+.navlink-current:hover {
+  color: #fff;
+  background-color: transparent;
+  -webkit-transition: color 0.5s; /* Safari */
+  transition: color 0.5s;
+}
+.navlink-error {
+  color: #F00;
+}
+.logo-nav-wrap {
+  padding: 15px 0 0;
+  margin: 0;
+  float: left;
+}
+.logo-nav {
+  width: 300px;
+  border: none;
+}
+.logo-nav:hover, .logo-nav:visited {
+  color: none !important;
+  background-color: transparent !important;
+}
+/* a:visited {
+  color: inherit;
+  background-color: transparent;
+} */

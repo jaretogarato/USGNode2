@@ -1,0 +1,41 @@
+/* usage: font-family: 'Lato', sans-serif; */
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Expletus Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Titillium Web', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+}
+@font-face {
+    font-family: 'Gobold';
+    src:url('../assets/fonts/Gobold.ttf.woff') format('woff'),
+        url('../assets/fonts/Gobold.ttf.svg#Gobold') format('svg'),
+        url('../assets/fonts/Gobold.ttf.eot'),
+        url('../assets/fonts/Gobold.ttf.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}

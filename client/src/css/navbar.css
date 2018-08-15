@@ -1,0 +1,37 @@
+/* const breaks = {
+  mobile: '320px',
+  tablet: '768px',
+  computer: '992px',
+  largeMonitor: '1280px',
+  widescreen: '1920px',
+} */
+.navWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  margin-top: 0;
+  left: 0;
+  z-index: 10000;
+  width: 100%;
+  min-height: 100px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10%;
+  padding-right: 10%;
+  text-align: right;
+  border: none;
+  background-color: #FFFFFF;
+
+}
+@media (max-width: 768px) {
+  .navWrap {
+    flex-wrap: wrap;
+  }
+}
+
+.navLogo{
+
+}
