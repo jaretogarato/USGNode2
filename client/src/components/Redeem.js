@@ -3,6 +3,7 @@ import { Header, Container, Grid } from 'semantic-ui-react';
 import TopBg from '../assets/images/us-gold-header-bg.jpg';
 import Footer from './partials/Footer';
 import RedeemForm from './partials/RedeemForm';
+import WalletBalance from './partials/WalletBalance';
 import Fade from 'react-reveal/Fade';
 // import WalkingLiberty from '../assets/images/walking-liberty-coin.png';
 import USGoldToken from '../assets/images/usg-token.png';
@@ -25,19 +26,8 @@ class Redeem extends Component {
       <Container fluid>
         <HeroHeader bgImage={TopBg}>
           <Container>
-            <HhInnerContainer>
-              <HhTextContainer>
-                <HhH1>
-                  Redeem
-                </HhH1>
-                <HhH2>
-                  Tokens
-                </HhH2>
-              </HhTextContainer>
-              <Fade>
-                <HhImageContainer bgImage={USGoldToken} />
-              </Fade>
-            </HhInnerContainer>
+           
+            <WalletBalance title='Redeem USG' />
           </Container>
         </HeroHeader>
 

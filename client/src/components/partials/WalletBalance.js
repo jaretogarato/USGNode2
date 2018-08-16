@@ -19,7 +19,7 @@ import USGoldToken from '../../assets/images/usg-token.png';
 
 import { withRouter } from 'react-router-dom';
 class WalletBalance extends Component {
-  state = { ethereum_address: '...', usg_balance: '...' }
+  state = { ethereum_address: '...', usg_balance: '...'}
   
   
   
@@ -49,6 +49,9 @@ class WalletBalance extends Component {
        return (
         <HhInnerContainer>
               <HhTextContainer>
+              
+                <HhH1>{this.props.title}</HhH1>
+                <br />
                 <HhH4>
                 Your balance
                 </HhH4>

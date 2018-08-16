@@ -57,6 +57,7 @@ class RedeemForm extends Component {
 
     return (
       <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
+        <h2>Redeem USG</h2>
         <Container>
 
           <Form onSubmit={this.handleSubmit}>
