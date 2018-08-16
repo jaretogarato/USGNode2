@@ -78,6 +78,8 @@ class NavBar extends Component {
         {/* <NavLink name='Services' to='/services' isCurrent={this.isRouteCurrent('/services')} /> */}
         <NavLink name='Token' to='/token' isCurrent={this.isRouteCurrent('/token')} />
         <NavLink name='Contact' to='/contact' isCurrent={this.isRouteCurrent('/contact')} />
+        <NavLink name='Wallet' to='/wallet' isCurrent={this.isRouteCurrent('/wallet')} />
+        <NavLink name='Redeem' to='/redeem' isCurrent={this.isRouteCurrent('/redeem')} />
         <NavLink name='Resources' to='/resources' isCurrent={this.isRouteCurrent('/resources')} />
         {/* <p>{this.props.user.id ? this.props.user.id : "nothing here"}</p> */}
       </NavLinks>
