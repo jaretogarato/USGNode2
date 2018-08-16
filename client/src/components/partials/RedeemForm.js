@@ -13,24 +13,34 @@ import { withRouter } from 'react-router-dom';
 
 
 class RedeemForm extends Component {
-  state = { ethereum_address: '', qty_to_redeem: '', message: '' }
+  state = { ethereum_address: '', qty_to_redeem: '', contact: '', shipping_details:'' }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { title, first_name, last_name, phone, email } = this.state;
+    const { ethereum_address, qty_to_redeem, shipping_details, contact } = this.state;
     const { dispatch, history } = this.props;
 
     // TODO: better error checking
-    if (first_name === '' || last_name === '') {
+    if (false) {
       console.log('Please complete all fields');
     } else {
-      axios.post('/api/leads', this.state)
+        
+        
+        let msg = JSON.stringify(this.state);
+        let hash = window.web3js.utils.sha3(msg);
+        console.log(hash);
+        
+      axios.post('/api/redeem', this.state)
       .then(function (res) {
-        history.push('/success');
+        
+        //TODO: error handling
+        window.usg.methods.redeem(qty_to_redeem,hash).send();
+        
       })
       .catch( err => {
-        console.log('Failed to add contact');
+        console.log(err);
       });
+        this.setState({ ethereum_address: '', qty_to_redeem: '', contact: '', shipping_details:'' });
     }
   }
 
@@ -51,9 +61,19 @@ class RedeemForm extends Component {
     // console.log(event.target.value);
     // console.log(this.state);
   }
-
+ componentDidMount =  () => {
+      window.addEventListener("web3Complete", this.setWeb3);
+      
+  }
+  
+   setWeb3 = ()=>{
+       this.setState({
+           ethereum_address: window.acct
+           });
+      
+  }
   render() {
-    const { ethereum_address, qty_to_redeem, message } = this.state;
+    const { ethereum_address, qty_to_redeem, shipping_details, contact } = this.state;
 
     return (
       <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
@@ -67,6 +87,8 @@ class RedeemForm extends Component {
                 <Grid.Column width={8}>
                   <Form.Field>
                     <input
+                        type='number'
+                        min='1'
                       id='qty_to_redeem'
                       placeholder='Quantity To Redeem'
                       required
@@ -76,8 +98,17 @@ class RedeemForm extends Component {
                   </Form.Field>
                 </Grid.Column>
                 <Grid.Column width={8}>
+                <Form.Field>
+                    <input 
+                      id='contact'
+                      placeholder='a way to contact you'
+                      required
+                      value={contact}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Field>
                   <Form.Field>
-                    <input
+                    <input type='hidden'
                       id='ethereum_address'
                       placeholder='Ethereum Address'
                       required
@@ -90,9 +121,9 @@ class RedeemForm extends Component {
               <Grid.Row>
                 <Grid.Column width={16}>
                   <Form.Field
-                    id='message'
-                    placeholder='Enter your message here...'
-                    value={message}
+                    id='shipping_details'
+                    placeholder='Enter full shipping details here'
+                    value={shipping_details}
                     control={TextArea}
                     onChange={this.handleChange}
                   />

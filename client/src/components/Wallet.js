@@ -33,7 +33,6 @@ class Wallet extends Component {
       <Container fluid>
         <HeroHeader bgImage={TopBg}>
           <Container>
-           
             <WalletBalance title='USG Wallet' />
           </Container>
         </HeroHeader>

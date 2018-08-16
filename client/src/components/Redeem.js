@@ -30,9 +30,11 @@ class Redeem extends Component {
             <WalletBalance title='Redeem USG' />
           </Container>
         </HeroHeader>
-
+        <Container>
+           <RedeemForm />
+        </Container>
         {/* <SubmitForm /> */}
-        <RedeemForm />
+       
         <Footer />
       </Container>
     );

@@ -24,14 +24,10 @@ class WalletBalance extends Component {
   
   
    componentDidMount =  () => {
-      
-     // initWeb3();
-    
-      window.addEventListener("web3Complete", this.x);
-      //console.log((await web3js.eth.getAccounts())[0]);
+      window.addEventListener("web3Complete", this.setWeb3);
       
   }
-  x = ()=>{
+  setWeb3 = ()=>{
     console.log(window.web3js);  
     console.log(window.acct);  
       

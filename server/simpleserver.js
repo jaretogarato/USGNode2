@@ -96,6 +96,18 @@ app.post('/recordFunctionCall', (req, res)=>{
 
 
 
+app.post('/api/redeem', (req, res)=>{
+    
+    console.log("qq");
+    req.body.complete = false;
+    db.get('functionCalls')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
 app.post('/api/leads', (req, res)=>{
     
     console.log("qq");
