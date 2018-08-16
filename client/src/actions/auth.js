@@ -76,7 +76,9 @@ export const handleLogin = (email, password, history) => {
 };
 
 export const validateToken = (callBack = () => {}) => {
-  return dispatch => {
+ callBack();
+ 
+ /* return dispatch => {
     dispatch({ type: 'VALIDATE_TOKEN' });
     const headers = axios.defaults.headers.common;
     axios.get('/api/auth/validate_token', headers)
@@ -86,5 +88,5 @@ export const validateToken = (callBack = () => {}) => {
         dispatch(setHeaders(res.headers));
       })
       .catch(() => callBack());
-  };
+  };*/
 };
