@@ -17,24 +17,31 @@ import Img from './Img';
 import {config } from "../../configs/dev.js";
 
 class WalletForm extends Component {
-  state = { ethereum_address: '', balance: '' }
+  state = { ethereum_address_to: '', amt_to_Send: '' }
 
   handleSubmit = event => {
+      
     event.preventDefault();
-    const { title, first_name, last_name, phone, email } = this.state;
+    const { ethereum_address_to, amt_to_Send } = this.state;
     const { dispatch, history } = this.props;
 
     // TODO: better error checking
-    if (first_name === '' || last_name === '') {
+   
+    if (false) {
       console.log('Please complete all fields');
     } else {
-      axios.post(config.apiRoot + '/leads', this.state)
-      .then(function (res) {
-        history.push('/success');
-      })
-      .catch( err => {
-        console.log('Failed to add contact');
-      });
+        console.log(window.usg);
+        console.log(ethereum_address_to);
+        console.log(amt_to_Send);
+        window.usg.methods.transfer(ethereum_address_to, amt_to_Send).send();
+        
+        //TODO: alert user/ask "are you sure" and give them instructions to click send on MetaMask
+        
+        console.log("sending...");
+        this.setState({ 
+            ethereum_address_to : "",
+            amt_to_Send: ""  
+        });
     }
   }
 
@@ -59,10 +66,11 @@ class WalletForm extends Component {
   }
 
   render() {
-    const { ethereum_address, balance } = this.state;
+    const { ethereum_address_to, amt_to_Send } = this.state;
 
     return (
       <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
+        <h2>Send USG</h2>
         <Container>
           <Form onSubmit={this.handleSubmit}>
             <Grid padded stackable>
@@ -70,25 +78,25 @@ class WalletForm extends Component {
                 <Grid.Column width={6}>
                   <Form.Field>
                     <input
-                      id='ethereum_address'
-                      placeholder='Ethereum Address'
+                      id='ethereum_address_to'
+                      placeholder='Ethereum Address TO'
                       required
-                      value={ethereum_address}
+                      value={ethereum_address_to}
                       onChange={this.handleChange}
                     />
                   </Form.Field>
                 </Grid.Column>
-                <Grid.Column width={2}></Grid.Column>
-                <Grid.Column width={2}>
-                  <Img src={CubesGold02} width={60} height={60} />
-                </Grid.Column>
-                <Grid.Column width={6}>
+                
+                
+              </Grid.Row>
+              <Grid.Row>
+              <Grid.Column width={6}>
                   <Form.Field>
                     <input
-                      id='balance'
-                      placeholder='Balance'
+                      id='amt_to_Send'
+                      placeholder='USG to send'
                       required
-                      value={balance}
+                      value={amt_to_Send}
                       onChange={this.handleChange}
                     />
                   </Form.Field>

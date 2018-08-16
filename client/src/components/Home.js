@@ -21,7 +21,6 @@ import ChartEthereum from '../assets/images/chart-ethereum.jpg';
 import ChartUSGold from '../assets/images/chart-usgold.jpg';
 import GoldOnGradient from '../assets/images/gold-bar-on-gradient.png';
 import CubeColoredB from '../assets/images/cube-colored-b.png';
-import BuyKeepRedeem from '../assets/images/buy-keep-redeem-bg-wide.jpg';
 import PaymentsAccepted from '../assets/images/payments-accepted.png';
 import FincenLogoBlack from '../assets/images/fincen-logo-black.png';
 import BBBGray from '../assets/images/bbb-gray-400x.png';
@@ -165,70 +164,6 @@ class Home extends Component {
           </Container>
         </FullWidthDiv>
 
-        <FullWidthDiv topColor='#fff' bottomColor='#fff' id={2}>
-          <Container>
-            <Grid stackable>
-              <Grid.Row style={styles.noPadOrMargin}>
-                <Grid.Column width={3} />
-                <Grid.Column width={6} style={styles.noPadOrMargin}>
-                  <OpenH5>
-                    Buy USG Tokens:
-                  </OpenH5>
-                </Grid.Column>
-                <Grid.Column width={4} />
-                <Grid.Column width={3} textAlign='right' style={styles.noPadOrMargin} only='tablet computer'>
-                  <a href="http://www.opennetwork.io" target="_blank" rel="noopener noreferrer"><Img src={PoweredByOpenNetwork} width={120} height={29} mode='fit' /></a>
-                </Grid.Column>
-              </Grid.Row>
-              <Grid.Row>
-                <Grid.Column width={1} />
-                <Grid.Column width={2} verticalAlign='middle' only='tablet computer'>
-                  <Img src={USGoldToken} width={100} height={80} mode='fit' />
-                </Grid.Column>
-                <Grid.Column width={3} verticalAlign='middle'>
-                  <FlexRowContainer>
-                    <div style={styles.fullWidth} >
-                      <OpenPSmall>
-                        CURRENT PRICE (IN <strong>ETH</strong>)
-                      </OpenPSmall>
-                      <OpenPSmall>
-                        {this.state.USGInEthereum} &nbsp;
-                        {
-                          (this.state.ethereum24hrChange > 0)
-                          ? <OpenSpanGreen>
-                              {this.state.ethereum24hrChange}%
-                            </OpenSpanGreen>
-                          : <OpenSpanRed>
-                              {this.state.ethereum24hrChange}%
-                            </OpenSpanRed>
-                          }
-                      </OpenPSmall>
-                    </div>
-                  </FlexRowContainer>
-                </Grid.Column>
-                <Grid.Column width={3} verticalAlign='middle'>
-                  <OpenPSmall>
-                    CURRENT PRICE (IN <strong>USD</strong>) <br />
-                  </OpenPSmall>
-                  <OpenPSmall>
-                    ${this.state.USGInUSD.toFixed(2)}
-                    <OpenSpanGreen>
-                      &nbsp; STABLE
-                    </OpenSpanGreen>
-                  </OpenPSmall>
-                </Grid.Column>
-                <Grid.Column width={2} />
-                <Grid.Column width={2} verticalAlign='middle'>
-                  <a href='/login'><USGButton>Buy</USGButton></a>
-                </Grid.Column>
-                <Grid.Column width={2} verticalAlign='middle'>
-                  <a href='/login'><USGButton>Redeem</USGButton></a>
-                </Grid.Column>
-                <Grid.Column width={1} />
-              </Grid.Row>
-            </Grid>
-          </Container>
-        </FullWidthDiv>
 
         <FullWidthBgDiv bgImage={MainPanelsBg} minHeight='850px' id={3}>
           <Container>
@@ -549,7 +484,7 @@ class Home extends Component {
           </Container>
         </FullWidthDiv>
 
-        <FullWidthBgDiv bgImage={BuyKeepRedeem} minHeight='600px' id={7}>
+        <FullWidthBgDiv minHeight='600px' id={7}>
           <Container>
             <OpenH3 style={styles.padTop}>
               Buy it, Hold it, Spend it, Redeem it
@@ -563,14 +498,9 @@ class Home extends Component {
                   <HrOrange />
                   <OpenP textAlign='left'>
                     {/* It’s simple. Just create an account and order as many US Gold tokens as you like. We accept these forms of payment: Ethereum, ACH transfer, or Visa debit. And if you have other forms of cryptocurrenncy, you can easily convert them to Ethereum at ShapeShift. */}
-                    Purchasing USG tokens is easy. <a href="/register">Create your USG account</a>, confirm your email address, and select the number of USG tokens you would like to buy.
+                    Purchasing USG tokens is easy. Call us at (000) 000-0000 or <a href="/contact">we'll contact you</a>.
                   </OpenP>
-                  <OpenP textAlign='left'>
-                    Three forms of payments are currently accepted. 1) Ethereum  (ETH), 2) Bank Wire Transfer (BWT), 3) Visa Debit.
-                  </OpenP>
-                  <OpenP textAlign='left'>
-                    If you need to convert other cryptocurrencies into ETH, please consider <a href='https://shapeshift.io/#/coins' target='_blank' rel='nofollow noreferrer'>ShapeShift</a>.
-                  </OpenP>
+                  
                   <OpenH4 textAlign='left'>
                     Easy To Redeem
                   </OpenH4>
