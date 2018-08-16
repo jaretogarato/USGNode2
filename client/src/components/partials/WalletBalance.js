@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import {
   HeroHeader, HhInnerContainer, HhTextContainer,
-  HhImageContainer, HhH1, HhH2, 
+  HhImageContainer, HhH1, HhH2, HhH3,  HhH4, 
   FullWidthDiv, FullWidthBgDiv,
   FlexRowContainer,
   OpenH3, OpenH4, OpenP, OpenPSmall, OpenSpanGreen, OpenSpanRed,
@@ -49,15 +49,15 @@ class WalletBalance extends Component {
        return (
         <HhInnerContainer>
               <HhTextContainer>
-                <h4>
-                Your Wallet
-                </h4>
+                <HhH4>
+                Your balance
+                </HhH4>
                 <HhH1>
                   <Img src={USGoldToken} width={60} height={60} /> {usg_balance} USG
                 </HhH1>
-                <HhH2>
+                <HhH4>
                     {ethereum_address}
-                </HhH2>
+                </HhH4>
               </HhTextContainer>
               <Fade>
                 <HhImageContainer bgImage={USGoldToken} />
