@@ -8,6 +8,7 @@ import AccountNew from './AccountNew';
 import Flash from './Flash';
 import Home from './Home';
 import About from './About';
+import Admin from './Admin';
 import Token from './Token';
 import Contact from './Contact';
 import Wallet from './Wallet';
@@ -46,6 +47,7 @@ class App extends Component {
         <FetchUser>
           <Switch>
             <Route exact path='/' component={Home} />
+            <Route path='/admin' component={Admin} />
             <Route path='/about' component={About} />
             <Route path='/token' component={Token} />
             <Route path='/contact' component={Contact} />

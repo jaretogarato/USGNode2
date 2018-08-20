@@ -72,11 +72,16 @@ class PurchaseForm extends Component {
     }
 
     setWeb3 = ()=>{
-        this.setState({
-            ethereum_address: window.acct
-        });
 
-    }
+        if(window.needsMetamask) {
+
+        }
+        else {
+            this.setState({
+                ethereum_address: window.acct
+            });
+        }
+    };
     render() {
         const { ethereum_address, qty_to_purchase, email } = this.state;
 

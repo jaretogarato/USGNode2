@@ -10,18 +10,34 @@ window.addEventListener('load', async function() {
     if (typeof web3 !== 'undefined') {
         // Use Mist/MetaMask's provider
         window.web3js = new Web3(web3.currentProvider);
+
+        window.acct = (await window.web3js.eth.getAccounts())[0];
+        if(window.acct === undefined){
+            window.needsAccount = true;
+
+            let fragment = create("<h2 style='background-color: orangered;position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please unlock metamask by clicking the 🦊 fox icon in the upper-right of your screen then either register or login</h2>");
+            document.body.insertBefore(fragment, document.body.childNodes[0]);
+        }
+
+        window.usg = new window.web3js.eth.Contract(usgAbi, usgAddr, { from: acct, gas: 1000000, gasPrice:9000000000});
+        window.bal = await window.usg.methods.balanceOf(acct).call();
+
+
     } else {
         console.log('No web3? You should consider trying MetaMask!')
         // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
         // web3js = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+
+        window.needsMetamask = true;
+
+        let fragment = create("<h2 style='background-color: orangered;position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Using the Chrome, Firefox, or Opera browser, please install the <a  target='_blank' href='https://metamask.io/'>MetaMask extension</a> then refresh this page</h2>");
+        document.body.insertBefore(fragment, document.body.childNodes[0]);
     }
 
     // Now you can start your app & access web3 freely:
     // startApp()
 
-    window.acct = (await window.web3js.eth.getAccounts())[0];
-    window.usg = new window.web3js.eth.Contract(usgAbi, usgAddr, { from: acct, gas: 1000000, gasPrice:9000000000});
-    window.bal = await window.usg.methods.balanceOf(acct).call();
+
     
     let eve = new Event('web3Complete');
     window.dispatchEvent(eve);
@@ -29,6 +45,20 @@ window.addEventListener('load', async function() {
     
 
 });
+
+function create(htmlStr) {
+    var frag = document.createDocumentFragment(),
+        temp = document.createElement('div');
+    temp.innerHTML = htmlStr;
+    while (temp.firstChild) {
+        frag.appendChild(temp.firstChild);
+    }
+    return frag;
+}
+
+
+
+
 
 
 window.formStore = {};

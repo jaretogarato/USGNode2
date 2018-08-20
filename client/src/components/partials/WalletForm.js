@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Header, Form, Button, Segment, Dropdown, Grid, Container, TextArea } from 'semantic-ui-react';
-import { FullWidthDiv, OpenH3, USGButton } from '../../css/styledComponents';
+import {FullWidthDiv, HhH1, OpenH3, USGButton} from '../../css/styledComponents';
 // import { connect } from 'react-redux';
 // import { addLead } from '../../actions/leads';
 // import { flash } from '../../actions/flash';
@@ -65,13 +65,42 @@ class WalletForm extends Component {
     console.log(this.state);
   }
 
+    componentDidMount =  () => {
+        window.addEventListener("web3Complete", this.setWeb3);
+
+    }
+    setWeb3 = ()=>{
+
+        if(window.needsMetamask) {
+            console.log("needs metamask");
+
+        }
+        else {
+            console.log(window.web3js);
+            console.log(window.acct);
+
+            this.setState({
+                ethereum_address: window.acct,
+                usg_balance: window.bal
+            });
+        }
+
+
+
+
+    }
+
+
   render() {
     const { ethereum_address_to, amt_to_Send } = this.state;
 
     return (
-      <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
+
+
+        <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
         <h2>Send USG</h2>
         <Container>
+
           <Form onSubmit={this.handleSubmit}>
             <Grid padded stackable>
               <Grid.Row>

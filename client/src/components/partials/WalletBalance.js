@@ -20,24 +20,46 @@ import USGoldToken from '../../assets/images/usg-token.png';
 import { withRouter } from 'react-router-dom';
 class WalletBalance extends Component {
   state = { ethereum_address: '...', usg_balance: '...'}
-  
-  
-  
+
+
+
    componentDidMount =  () => {
       window.addEventListener("web3Complete", this.setWeb3);
       
   }
   setWeb3 = ()=>{
-    console.log(window.web3js);  
-    console.log(window.acct);  
-      
-       this.setState({
-           ethereum_address: window.acct,
-           usg_balance: window.bal
-           });
+
+
+
+      if(!window.needsMetamask) {
+
+          if(!window.needsAccount) {
+              console.log(window.web3js);
+              console.log(window.acct);
+
+              this.setState({
+                  ethereum_address: window.acct,
+                  usg_balance: window.bal
+              });
+          }
+          else{
+
+
+          }
+
+
+
+      }
+      else {
+
+      }
+
+
+
       
   }
-  
+
+
    render() {
        const { ethereum_address, usg_balance } = this.state;
        
