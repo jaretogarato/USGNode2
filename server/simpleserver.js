@@ -22,13 +22,17 @@ db.defaults({ purchaseRequests: [], functionCalls:  [], leads: []}).write()
 app.post('/api/purchase', (req, res)=>{
 
 
+    let key = 4;
+
+
     req.body.complete = false;
+    req.body.key = key;
     db.get('purchaseRequests')
         .push(req.body)
         .write();
 
 
-    res.send("OK")
+    res.send({key:key})
 });
 
 

@@ -36,6 +36,9 @@ class PurchaseForm extends Component {
 
                     //TODO: tell user we will contact them shortly
 
+                    console.log(res.data)
+
+                    history.push('/purchasesuccess?key=' +res.data.key);
                     // window.usg.methods.redeem(qty_to_redeem,hash).send();
 
                 })
