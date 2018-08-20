@@ -13,11 +13,11 @@ import { withRouter } from 'react-router-dom';
 
 
 class RedeemForm extends Component {
-  state = { ethereum_address: '', qty_to_redeem: '', contact: '', shipping_details:'' }
+  state = { ethereum_address: '', qty_to_redeem: '', email: '', shipping_details:'' }
 
   handleSubmit = event => {
     event.preventDefault();
-    const { ethereum_address, qty_to_redeem, shipping_details, contact } = this.state;
+    const { ethereum_address, qty_to_redeem, shipping_details, email } = this.state;
     const { dispatch, history } = this.props;
 
     // TODO: better error checking
@@ -40,7 +40,7 @@ class RedeemForm extends Component {
       .catch( err => {
         console.log(err);
       });
-        this.setState({ ethereum_address: '', qty_to_redeem: '', contact: '', shipping_details:'' });
+        this.setState({ ethereum_address: '', qty_to_redeem: '', email: '', shipping_details:'' });
     }
   }
 
@@ -73,7 +73,7 @@ class RedeemForm extends Component {
       
   }
   render() {
-    const { ethereum_address, qty_to_redeem, shipping_details, contact } = this.state;
+    const { ethereum_address, qty_to_redeem, shipping_details, email } = this.state;
 
     return (
       <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
@@ -100,10 +100,10 @@ class RedeemForm extends Component {
                 <Grid.Column width={8}>
                 <Form.Field>
                     <input 
-                      id='contact'
-                      placeholder='a way to contact you'
+                      id='email'
+                      placeholder='Email Address'
                       required
-                      value={contact}
+                      value={email}
                       onChange={this.handleChange}
                     />
                   </Form.Field>

@@ -2,59 +2,71 @@ import React, { Component } from 'react';
 import { Header, Container, Grid } from 'semantic-ui-react';
 import TopBg from '../assets/images/us-gold-header-bg.jpg';
 import Footer from './partials/Footer';
-import PurchaseForm from './partials/PurchaseForm';
+import SubmitForm from './partials/SubmitForm';
 import Fade from 'react-reveal/Fade';
 // import WalkingLiberty from '../assets/images/walking-liberty-coin.png';
 import USGoldToken from '../assets/images/usg-token.png';
 import {
-  HeroHeader, HhInnerContainer, HhTextContainer,
-  HhImageContainer, HhH1, HhH2,
-  FullWidthDiv, FullWidthBgDiv,
-  FlexRowContainer,
-  OpenH3, OpenH4, OpenP, OpenPSmall, OpenSpanGreen, OpenSpanRed,
-  BorderedDiv, BorderedDivHead, BorderedDivBody,
-  HoverCenterDiv, HoverCenterDivWrap,
-  DividerGrayGrad, VerticalSpacer,
-  HrOrange,
-  USGButton,
+    HeroHeader, HhInnerContainer, HhTextContainer,
+    HhImageContainer, HhH1, HhH2, HhH4,
+    FullWidthDiv, FullWidthBgDiv,
+    FlexRowContainer,
+    OpenH3, OpenH4, OpenP, OpenPSmall, OpenSpanGreen, OpenSpanRed,
+    BorderedDiv, BorderedDivHead, BorderedDivBody,
+    HoverCenterDiv, HoverCenterDivWrap,
+    DividerGrayGrad, VerticalSpacer,
+    HrOrange,
+    USGButton,
 } from '../css/styledComponents';
+import PurchaseForm from "./partials/PurchaseForm";
 
-class Purchase extends Component {
-  render() {
-    return (
-      <Container fluid>
+class Contact extends Component {
+    render() {
+        return (
+            <Container fluid>
         <HeroHeader bgImage={TopBg}>
-          <Container>
+            <Container>
             <HhInnerContainer>
-              <HhTextContainer>
-                <HhH1>
-                  Purchase USG
-                </HhH1>
-                <HhH2>
-                  Lorem Ipsum Dolor Sit Amet
-                </HhH2>
-              </HhTextContainer>
-              <Fade>
-                <HhImageContainer bgImage={USGoldToken} />
-              </Fade>
-            </HhInnerContainer>
-          </Container>
+            <HhTextContainer>
+            <HhH1>
+            Purchase USG
+        </HhH1>
+        <HhH2>
+            Call (800) 673-5800
+        </HhH2>
+            <HhH4>
+        or fill out the form below
+            </HhH4>
+        </HhTextContainer>
+        <Fade>
+        <HhImageContainer bgImage={USGoldToken} />
+        </Fade>
+        </HhInnerContainer>
+        </Container>
         </HeroHeader>
 
-        <FullWidthDiv topColor='#fff' bottomColor='#fff' id={1}>
-          <Container>
+        <Grid padded>
+        <Grid.Row>
+        <Grid.Column width={2}></Grid.Column>
+            <Grid.Column width={12}>
             <OpenH3>
-              Buying USG tokens is as easy as making a phone call -- our number is 800-673-5800. <br />
-              Or, you can get the process going with this contact form:
-            </OpenH3>
-          </Container>
-        </FullWidthDiv>
+            Purchase USG
+        </OpenH3>
+        <OpenH4>
+            Fill out the following information and we will provide you with further instructions
+        </OpenH4>
+        </Grid.Column>
+        <Grid.Column width={2}></Grid.Column>
+            </Grid.Row>
+            </Grid>
 
-        <PurchaseForm />
-        <Footer />
-      </Container>
+            <PurchaseForm />
+
+
+            <Footer />
+            </Container>
     );
-  }
+    }
 }
 
-export default Purchase;
+export default Contact;

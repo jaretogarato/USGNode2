@@ -17,8 +17,52 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 
 
-db.defaults({ requests: [], functionCalls:  [], leads: []}).write()
- 
+db.defaults({ purchaseRequests: [], functionCalls:  [], leads: []}).write()
+
+app.post('/api/purchase', (req, res)=>{
+
+
+    req.body.complete = false;
+    db.get('purchaseRequests')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+
+app.post('/api/redeem', (req, res)=>{
+    
+    console.log("qq");
+    req.body.complete = false;
+    db.get('functionCalls')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+app.post('/api/leads', (req, res)=>{
+    
+    console.log("qq");
+    req.body.complete = false;
+    db.get('leads')
+        .push(req.body)
+        .write();
+
+
+    res.send("OK")
+});
+
+
+app.listen(3001);
+
+
+
+
+
 /*
 
 
@@ -93,32 +137,3 @@ app.post('/recordFunctionCall', (req, res)=>{
 
 */
 
-
-
-
-app.post('/api/redeem', (req, res)=>{
-    
-    console.log("qq");
-    req.body.complete = false;
-    db.get('functionCalls')
-        .push(req.body)
-        .write();
-
-
-    res.send("OK")
-});
-
-app.post('/api/leads', (req, res)=>{
-    
-    console.log("qq");
-    req.body.complete = false;
-    db.get('leads')
-        .push(req.body)
-        .write();
-
-
-    res.send("OK")
-});
-
-
-app.listen(3001);

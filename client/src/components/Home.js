@@ -498,7 +498,7 @@ class Home extends Component {
                   <HrOrange />
                   <OpenP textAlign='left'>
                     {/* It’s simple. Just create an account and order as many US Gold tokens as you like. We accept these forms of payment: Ethereum, ACH transfer, or Visa debit. And if you have other forms of cryptocurrenncy, you can easily convert them to Ethereum at ShapeShift. */}
-                    Purchasing USG tokens is easy. Call us at (000) 000-0000 or <a href="/contact">we'll contact you</a>.
+                    Purchasing USG tokens is easy. Call us at (800) 673-5800 or use the <a href="/purchase"> purchase form</a>.
                   </OpenP>
                   
                   <OpenH4 textAlign='left'>
