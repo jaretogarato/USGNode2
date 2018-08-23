@@ -12,6 +12,7 @@ import LogoCoinbase from '../assets/images/logo-coinbase.png';
 import LogoUSMint from '../assets/images/logo-usmint.png';
 import LogoBittrex from '../assets/images/logo-bittrex.png';
 import LogoBinance from '../assets/images/logo-binance.png';
+import LogoMetamask from '../assets/images/logo-metamask.png'
 
 import MainLinks from './partials/MainLinks';
 import Footer from './partials/Footer';
@@ -65,6 +66,26 @@ class Resources extends Component {
           <Container>
             <Grid stackable padded centered>
               <Grid.Row columns='equal'>
+
+          <Grid.Column>
+          <Fade bottom delay={200}>
+          <Card>
+          <Image src={LogoMetamask} />
+      <Card.Content>
+      <Card.Header>Tools</Card.Header>
+      <Card.Meta>
+      <a href="https://www.metamask.io/" target="_blank" rel="noopener noreferrer">
+          metamask.io
+          </a>
+          </Card.Meta>
+          <Card.Description>
+          MetaMask is a browser extension plugin that allows you to load your Ethereum wallet and run Ethereum dApps right in your browser without running a full Ethereum node.
+      </Card.Description>
+      </Card.Content>
+      </Card>
+      </Fade>
+      </Grid.Column>
+
                 <Grid.Column>
                   <Fade bottom>
                     <Card>

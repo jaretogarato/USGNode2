@@ -1,3 +1,4 @@
+var cookieSession = require('cookie-session')
 var express = require('express');
 
 var cors = require('cors')
@@ -7,6 +8,19 @@ var app = express();
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 app.use(cors())
+
+
+
+app.use(cookieSession({
+    name: 'session',
+    keys: ["thisisatest"],
+
+    // Cookie Options
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
+
+
 //app.use('/', express.static('public'));
 
 
@@ -58,6 +72,73 @@ app.post('/api/leads', (req, res)=>{
 
 
     res.send("OK")
+});
+
+app.post('/api/getchallenge', () => {
+   //gen random code, add to session
+
+});
+
+app.post('/api/answerchallenge', (req,res) => {
+    //if random code in session + signed obj recovers the "isOwner" address, we are good
+
+});
+
+app.get('/api/tableTest', (req, res)=>{
+    if(req.session.isAdmin == true) {
+        //querystring.parse()
+        console.log(req.query)
+    }
+    else {
+        req.session.isAdmin = true;
+    }
+
+
+/*
+{ draw: '1',
+  columns:
+   [ { data: 'name',
+       name: '',
+       searchable: 'true',
+       orderable: 'true',
+       search: [Object] },
+     { data: 'nickname',
+       name: '',
+       searchable: 'true',
+       orderable: 'true',
+       search: [Object] } ],
+  order: [ { column: '0', dir: 'asc' } ],
+  start: '0',
+  length: '10',
+  search: { value: '', regex: 'false' },
+  _: '1534953148233' }
+
+ */
+    let q ={
+        draw: req.query.draw,
+        recordsTotal:999,
+        recordsFiltered:500,
+        data:[
+        {
+            name : "xxx1",
+            nickname: "x"
+        },
+        {
+            name : "xxx2",
+            nickname: "y"
+        },{
+        name : "xxx3",
+        nickname: "z"
+    }
+    ]};
+
+
+    res.send(q)
+});
+
+
+app.get('/api/leadList', (req,res) => {
+   console.log(req);
 });
 
 

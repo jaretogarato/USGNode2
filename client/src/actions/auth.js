@@ -76,6 +76,8 @@ export const handleLogin = (email, password, history) => {
 };
 
 export const validateToken = (callBack = () => {}) => {
+
+
  callBack();
  
  /* return dispatch => {

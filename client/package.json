@@ -26,6 +26,7 @@
     "react-stickynode": "^1.4.1",
     "react-track": "^0.4.4",
     "react-transition-group": "^2.3.1",
+    "reactable": "^1.1.0",
     "redux": "^3.7.2",
     "redux-devise-axios": "^0.0.4",
     "redux-thunk": "^2.2.0",
@@ -43,5 +44,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "datatables.net": "^1.10.19",
+    "jquery": "^3.3.1"
+  }
 }
