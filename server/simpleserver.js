@@ -74,15 +74,15 @@ app.post('/api/leads', (req, res)=>{
     res.send("OK")
 });
 
-app.post('/api/getchallenge', () => {
-   //gen random code, add to session
-
+app.post('/api/login', () => {
+   //form should be
+    //{ timestamp: , signature: }
+    //if timestamp is within 1 min, AND the recovered addr is admin
+    //add login to session
+    //refresh page
 });
 
-app.post('/api/answerchallenge', (req,res) => {
-    //if random code in session + signed obj recovers the "isOwner" address, we are good
 
-});
 
 app.get('/api/tableTest', (req, res)=>{
     if(req.session.isAdmin == true) {

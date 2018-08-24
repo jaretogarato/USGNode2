@@ -27,9 +27,8 @@ class Wallet extends Component {
     doLogin() {
         console.log("zzzz")
 
-        '/api/getchallenge'
+        '/api/login'
 
-        '/api/answerchallenge'
     }
 
     componentDidMount() {
