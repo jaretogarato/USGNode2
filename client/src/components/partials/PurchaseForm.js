@@ -86,7 +86,7 @@ class PurchaseForm extends Component {
         const { ethereum_address, qty_to_purchase, email } = this.state;
 
         return (
-            <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
+            <FullWidthDiv topColor='#fff' bottomColor='#ddd' >
 
         <Container>
 

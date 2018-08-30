@@ -3,6 +3,41 @@ const usgOwner = "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87";
 let web3  = window.web3;
 
 
+ function checkForAccount() {
+    setTimeout(async()=> {
+
+
+        window.acct = (await window.web3js.eth.getAccounts())[0];
+        if(window.acct === undefined) {
+            checkForAccount();
+        }
+        else {
+            location.reload();
+        }
+
+
+    },1000)
+
+
+}
+
+function checkForWeb3() {
+    setTimeout(async()=> {
+
+
+        window.acct = (await window.web3js.eth.getAccounts())[0];
+        if(web3 === undefined) {
+            checkForWeb3();
+        }
+        else {
+            location.reload();
+        }
+
+
+    },1000)
+
+
+}
 window.addEventListener('load', async function() {
 
 
@@ -17,6 +52,8 @@ window.addEventListener('load', async function() {
 
             let fragment = create("<h2 style='background-color: orangered;position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please unlock metamask by clicking the 🦊 fox icon in the upper-right of your screen then either register or login then refresh this page</h2>");
             document.body.insertBefore(fragment, document.body.childNodes[0]);
+            checkForAccount();
+
         }
 
         window.usg = new window.web3js.eth.Contract(usgAbi, usgAddr, { from: acct, gas: 1000000, gasPrice:9000000000});
@@ -32,6 +69,8 @@ window.addEventListener('load', async function() {
 
         let fragment = create("<h2 style='background-color: orangered;position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Using the Chrome, Firefox, or Opera browser, please install the <a  target='_blank' href='https://metamask.io/'>MetaMask extension</a> then refresh this page</h2>");
         document.body.insertBefore(fragment, document.body.childNodes[0]);
+
+        checkForWeb3();
     }
 
     // Now you can start your app & access web3 freely:
