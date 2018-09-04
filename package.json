@@ -1,0 +1,15 @@
+{
+  "name": "create-repack-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "cd client && npm install --only=dev && npm install && npm run build && cd ../server && npm install cors && npm install web3@1.0.0-beta.35",
+    "start": "cd server && node simpleserver.js",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm run build && npm run deploy && echo 'Client Built'",
+    "sass" : "sass --watch src/scss:src/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+}
