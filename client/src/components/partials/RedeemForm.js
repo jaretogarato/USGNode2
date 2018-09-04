@@ -72,6 +72,7 @@ class RedeemForm extends Component {
            });
       
   }
+
   render() {
     const { ethereum_address, qty_to_redeem, shipping_details, email } = this.state;
 

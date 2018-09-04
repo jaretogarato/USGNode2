@@ -25,7 +25,7 @@ class SubmitForm extends Component {
     if (first_name === '' || last_name === '') {
       console.log('Please complete all fields');
     } else {
-      axios.post(config.apiRoot + '/leads', this.state)
+      axios.post('api/leads', this.state)
       .then(function (res) {
         history.push('/success');
       })
@@ -54,7 +54,17 @@ class SubmitForm extends Component {
     // console.log(event.target.options);
     console.log(this.state);
   }
+    componentDidMount =  () => {
+        window.addEventListener("web3Complete", this.setWeb3);
 
+    }
+
+    setWeb3 = ()=>{
+        this.setState({
+            ethereum_address: window.acct
+        });
+
+    }
   render() {
     const { title, first_name, last_name, phone, email, message, ethereum_address } = this.state;
 
@@ -129,9 +139,10 @@ class SubmitForm extends Component {
                     <input
                       id='ethereum_address'
                       placeholder='Ethereum Address'
-                      required
+
+                        readonly
                       value={ethereum_address}
-                      onChange={this.handleChange}
+                     // onChange={this.handleChange}
                     />
                   </Form.Field>
 

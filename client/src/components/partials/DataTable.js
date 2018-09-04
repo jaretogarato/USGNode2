@@ -40,8 +40,8 @@ class Table extends Component {
         $(this.refs.main).DataTable({
             "ajax": this.props.dataSource,
             "columns": this.props.cols,
-            "processing": true,
-            "serverSide": true
+           // "processing": true,
+           // "serverSide": true
         });
     }
     componentWillUnmount(){

@@ -21,13 +21,34 @@ import {
   USGButton,
 } from '../css/styledComponents';
 
+import axios from 'axios';
+
 import Table from './partials/DataTable'
 class Wallet extends Component {
 
-    doLogin() {
-        console.log("zzzz")
+    async doLogin() {
+        //hash and sign now
+        let acct = (await window.web3js.eth.getAccounts())[0];
+        console.log(acct);
 
-        '/api/login'
+
+        // "log into USG (" + Date.now() + ")";
+        let timestamp = new Date(Date.now()).toString();
+
+        console.log(timestamp)
+
+        let thing  = await window.web3js.eth.personal.sign(timestamp,  acct);
+
+
+        axios.post('api/login', {signature:thing, timestamp:timestamp})
+            .then(function (res) {
+                //history.push('/success');
+                window.location.reload();
+               // history.push('');
+            })
+            .catch( err => {
+                console.log('Failed to add contact');
+            });
 
     }
 
@@ -48,15 +69,47 @@ class Wallet extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column>
-               <Table dataSource="api/tableTest" cols={[
+               <Table dataSource="api/leadList" cols={[
                    {
-                        title:"Name",
-                        data: "name"
+                        title:"Title",
+                        data: "title",
+                       defaultContent: ""
                     },
                       {
-                          title:"Nickname",
-                              data: "nickname"
-                      }
+                          title:"First",
+                              data: "first_name",
+                          defaultContent: ""
+                      },
+      {
+          title:"Last",
+              data: "last_name",
+          defaultContent: ""
+      },
+      {
+          title:"Phone",
+              data: "phone",
+          defaultContent: ""
+      },
+      {
+          title:"Email",
+              data: "email",
+          defaultContent: ""
+      },
+      {
+          title:"Message",
+              data: "message",
+          defaultContent: ""
+      },
+      {
+          title:"Eth Addr",
+              data: "ethereum_address",
+          defaultContent: ""
+      },
+      {
+          title:"Complete",
+              data: "complete",
+          defaultContent: ""
+      }
                 ]} />
               </Grid.Column>
             </Grid.Row>

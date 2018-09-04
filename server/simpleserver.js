@@ -5,6 +5,10 @@ var cors = require('cors')
 
 var app = express();
 
+const log = console.log;
+
+
+
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 app.use(cors())
@@ -13,7 +17,7 @@ app.use(cors())
 
 app.use(cookieSession({
     name: 'session',
-    keys: ["thisisatest"],
+    secret: "thisisatest",
 
     // Cookie Options
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
@@ -36,8 +40,7 @@ db.defaults({ purchaseRequests: [], functionCalls:  [], leads: []}).write()
 app.post('/api/purchase', (req, res)=>{
 
 
-    let key = 4;
-
+    let key = web3.utils.randomHex(makeid);
 
     req.body.complete = false;
     req.body.key = key;
@@ -74,71 +77,181 @@ app.post('/api/leads', (req, res)=>{
     res.send("OK")
 });
 
-app.post('/api/login', () => {
-   //form should be
-    //{ timestamp: , signature: }
-    //if timestamp is within 1 min, AND the recovered addr is admin
-    //add login to session
-    //refresh page
+
+const Web3 = require("web3");
+
+function makeid(length) {
+    var text = "";
+    var possible = "BCDFGHJKLMPQRTVWX123456789";
+
+    for (var i = 0; i < length; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+
+const appOwner = "0x602c788eb3eabbf43e3f129172e79f5142d12c87";
+
+let web3 = new Web3();
+
+app.post('/api/login', (req, res) => {
+
+
+
+   // console.log(web3.eth)
+    let recover = web3.eth.accounts.recover(req.body.timestamp,req.body.signature);
+    log("sender: ");
+    log(recover);
+
+    if(recover.toUpperCase() === appOwner.toUpperCase() && new Date(req.body.timestamp) > Date.now() - (1000 * 60 * 5) ){
+        //timestamp must be less than 5min old
+        req.session.isAdmin = true;
+        log("OK!");
+    }
+    else {
+        log("nope");
+    }
+
+   // console.log(new Date(req.body.timestamp) )
+
+    res.send("OK")
 });
 
 
-
-app.get('/api/tableTest', (req, res)=>{
-    if(req.session.isAdmin == true) {
-        //querystring.parse()
-        console.log(req.query)
-    }
-    else {
-        req.session.isAdmin = true;
-    }
-
-
 /*
-{ draw: '1',
-  columns:
-   [ { data: 'name',
-       name: '',
-       searchable: 'true',
-       orderable: 'true',
-       search: [Object] },
-     { data: 'nickname',
-       name: '',
-       searchable: 'true',
-       orderable: 'true',
-       search: [Object] } ],
-  order: [ { column: '0', dir: 'asc' } ],
-  start: '0',
-  length: '10',
-  search: { value: '', regex: 'false' },
-  _: '1534953148233' }
+app.get('/api/tableTest', (req, res)=>{
 
- */
-    let q ={
-        draw: req.query.draw,
-        recordsTotal:999,
-        recordsFiltered:500,
-        data:[
-        {
-            name : "xxx1",
-            nickname: "x"
-        },
-        {
-            name : "xxx2",
-            nickname: "y"
-        },{
-        name : "xxx3",
-        nickname: "z"
+    let q = {
+        draw:0,
+        recordsTotal:0,
+        data:[]
+    };
+    if(req.session.isAdmin) {
+        //querystring.parse()
+       // console.log(req.query)
+        q = {
+            draw: req.query.draw,
+            recordsTotal:999,
+            recordsFiltered:500,
+            data:[
+                {
+                    name : "jyty",
+                    nickname: "x"
+                },
+                {
+                    name : "qcbmg",
+                    nickname: "y"
+                },{
+                    name : "asd",
+                    nickname: "z"
+                }
+            ]};
     }
-    ]};
 
+    req.session.isAdmin = false;
+    /*
+    { draw: '1',
+      columns:
+       [ { data: 'name',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] },
+         { data: 'nickname',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] } ],
+      order: [ { column: '0', dir: 'asc' } ],
+      start: '0',
+      length: '10',
+      search: { value: '', regex: 'false' },
+      _: '1534953148233' }
+
+     * /
 
     res.send(q)
 });
 
+*/
+
+app.get('/api/purchaseList', (req,res)=> {
+/*
+    "ethereum_address": "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87",
+      "qty_to_purchase": "1",
+      "email": "hollandcodeandgraphics@gmail.com",
+      "complete": false,
+      "key": "0xa7258e6f9e4f"
+ */
+    let q = {
+
+    };
+
+    if(req.session.isAdmin) {
+        let leads = db.get('leads').value();
+        //console.log(leads[0])
+        q = {
+            // draw:1,
+            // recordsTotal:leads.length,
+            data:leads
+        };
+    }
+})
 
 app.get('/api/leadList', (req,res) => {
-   console.log(req);
+
+
+    /*
+     title: "",
+     first_name: "Daniel",
+     last_name: "Holland",
+     phone": "2084097056",
+     email": "hollandcodeandgraphics@gmail.com",
+     message": "",
+     ethereum_address": "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87",
+     complete": false
+     */
+
+
+    let q = {
+
+    };
+    if(req.session.isAdmin) {
+        //querystring.parse()
+        // console.log(req.query)
+        let leads = db.get('leads').value();
+        //console.log(leads[0])
+        q = {
+           // draw:1,
+           // recordsTotal:leads.length,
+            data:leads
+        };
+    }
+
+    /*
+    { draw: '1',
+      columns:
+       [ { data: 'name',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] },
+         { data: 'nickname',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] } ],
+      order: [ { column: '0', dir: 'asc' } ],
+      start: '0',
+      length: '10',
+      search: { value: '', regex: 'false' },
+      _: '1534953148233' }
+
+     */
+
+
+
 });
 
 
