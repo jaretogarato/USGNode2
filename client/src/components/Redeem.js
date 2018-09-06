@@ -26,15 +26,28 @@ class Redeem extends Component {
       <Container fluid>
         <HeroHeader bgImage={TopBg}>
           <Container>
-           
             <WalletBalance title='Redeem USG' />
           </Container>
         </HeroHeader>
         <Container>
+          <OpenH3>
+            US Gold Currency Token Redeption
+          </OpenH3>
+          {/* <OpenP>
+            This is easy.
+          </OpenP> */}
+          <OpenP>
+            Just enter the quantity you wish to redeem, and your full shipping address with your name or your company name in the USA.
+          </OpenP>
+          <OpenP>
+            If you are redeeming from outside of the USA, please call 1-800-673-5800 and one of our customer service representatives will help you.
+          </OpenP>
+        </Container>
+        <Container>
            <RedeemForm />
         </Container>
         {/* <SubmitForm /> */}
-       
+
         <Footer />
       </Container>
     );

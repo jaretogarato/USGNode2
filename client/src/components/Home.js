@@ -110,7 +110,9 @@ class Home extends Component {
                   US Gold Currency
                 </HhH1>
                 <HhH2>
-                  The convenience of the blockchain. The stability of gold.
+                  The security of the blockchain.<br />
+                  The convenience of digital. <br />
+                  The stability of gold.
                 </HhH2>
               </HhTextContainer>
               <Fade>
@@ -164,6 +166,70 @@ class Home extends Component {
           </Container>
         </FullWidthDiv>
 
+        <FullWidthDiv topColor='#fff' bottomColor='#fff' id={2}>
+          <Container>
+            <Grid stackable>
+              <Grid.Row style={styles.noPadOrMargin}>
+                <Grid.Column width={3} />
+                <Grid.Column width={6} style={styles.noPadOrMargin}>
+                  <OpenH5>
+                    Buy USG Tokens:
+                  </OpenH5>
+                </Grid.Column>
+                <Grid.Column width={4} />
+                <Grid.Column width={3} textAlign='right' style={styles.noPadOrMargin} only='tablet computer'>
+                  <a href="http://www.opennetwork.io" target="_blank" rel="noopener noreferrer"><Img src={PoweredByOpenNetwork} width={120} height={29} mode='fit' /></a>
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column width={1} />
+                <Grid.Column width={2} verticalAlign='middle' only='tablet computer'>
+                  <Img src={USGoldToken} width={100} height={80} mode='fit' />
+                </Grid.Column>
+                <Grid.Column width={3} verticalAlign='middle'>
+                  <FlexRowContainer>
+                    <div style={styles.fullWidth} >
+                      <OpenPSmall>
+                        CURRENT PRICE (IN <strong>ETH</strong>)
+                      </OpenPSmall>
+                      <OpenPSmall>
+                        {this.state.USGInEthereum} &nbsp;
+                        {
+                          (this.state.ethereum24hrChange > 0)
+                          ? <OpenSpanGreen>
+                              {this.state.ethereum24hrChange}%
+                            </OpenSpanGreen>
+                          : <OpenSpanRed>
+                              {this.state.ethereum24hrChange}%
+                            </OpenSpanRed>
+                          }
+                      </OpenPSmall>
+                    </div>
+                  </FlexRowContainer>
+                </Grid.Column>
+                <Grid.Column width={3} verticalAlign='middle'>
+                  <OpenPSmall>
+                    CURRENT PRICE (IN <strong>USD</strong>) <br />
+                  </OpenPSmall>
+                  <OpenPSmall>
+                    ${this.state.USGInUSD.toFixed(2)}
+                    <OpenSpanGreen>
+                      &nbsp; STABLE
+                    </OpenSpanGreen>
+                  </OpenPSmall>
+                </Grid.Column>
+                <Grid.Column width={2} />
+                <Grid.Column width={2} verticalAlign='middle'>
+                  <a href='/purchase'><USGButton>Buy</USGButton></a>
+                </Grid.Column>
+                <Grid.Column width={2} verticalAlign='middle'>
+                  <a href='/redeem'><USGButton>Redeem</USGButton></a>
+                </Grid.Column>
+                <Grid.Column width={1} />
+              </Grid.Row>
+            </Grid>
+          </Container>
+        </FullWidthDiv>
 
         <FullWidthBgDiv bgImage={MainPanelsBg} minHeight='850px' id={3}>
           <Container>
@@ -500,7 +566,7 @@ class Home extends Component {
                     {/* It’s simple. Just create an account and order as many US Gold tokens as you like. We accept these forms of payment: Ethereum, ACH transfer, or Visa debit. And if you have other forms of cryptocurrenncy, you can easily convert them to Ethereum at ShapeShift. */}
                     Purchasing USG tokens is easy. Call us at (800) 673-5800 or use the <a href="/purchase"> purchase form</a>.
                   </OpenP>
-                  
+
                   <OpenH4 textAlign='left'>
                     Easy To Redeem
                   </OpenH4>
