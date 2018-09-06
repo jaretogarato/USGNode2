@@ -177,6 +177,7 @@ app.get('/api/tableTest', (req, res)=>{
 */
 
 app.get('/api/purchaseList', (req,res)=> {
+    log("purchaseList")
 /*
     "ethereum_address": "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87",
       "qty_to_purchase": "1",
@@ -189,18 +190,19 @@ app.get('/api/purchaseList', (req,res)=> {
     };
 
     if(req.session.isAdmin) {
-        let leads = db.get('leads').value();
+        let purchaseRequests = db.get('purchaseRequests').value();
         //console.log(leads[0])
         q = {
             // draw:1,
             // recordsTotal:leads.length,
-            data:leads
+            data:purchaseRequests
         };
     }
+    res.send(q);
 })
 
 app.get('/api/leadList', (req,res) => {
-
+    log("leadList")
 
     /*
      title: "",
@@ -251,7 +253,7 @@ app.get('/api/leadList', (req,res) => {
      */
 
 
-
+res.send(q);
 });
 
 

@@ -38,7 +38,11 @@ import '../css/fonts.css';
 import '../css/semantic-ui/semantic.min.css';
 
 class App extends Component {
+
+
   render() {
+
+
     return (
       <div>
         <NavBar />
@@ -74,7 +78,7 @@ class App extends Component {
             <ProtectedRoute path='/users' component={Users} />
             <ProtectedRoute path='/profile/*' component={Profile} />
             <ProtectedRoute path='/dashboard/*' component={Dashboard} />
-            <Route component={NoMatch} />
+            <Route component={Home} />
           </Switch>
         </FetchUser>
       </div>

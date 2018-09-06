@@ -69,6 +69,7 @@ class Wallet extends Component {
           <Grid>
             <Grid.Row>
               <Grid.Column>
+                <h2>Leads</h2>
                <Table dataSource="api/leadList" cols={[
                    {
                         title:"Title",
@@ -113,6 +114,53 @@ class Wallet extends Component {
                 ]} />
               </Grid.Column>
             </Grid.Row>
+      <Grid.Row>
+      <Grid.Column>
+      <h2>Purchase Requests</h2>
+      <Table dataSource="api/purchaseList" cols={[
+              {
+                  title:"Title",
+                  data: "title",
+                  defaultContent: ""
+              },
+      {
+          title:"Ethereum",
+              data: "ethereum_address",
+          defaultContent: ""
+      },
+      {
+          title:"Number to buy",
+              data: "qty_to_purchase",
+          defaultContent: ""
+      },
+      {
+          title:"Email",
+              data: "email",
+          defaultContent: ""
+      },
+      {
+          title:"Complete",
+              data: "complete",
+          defaultContent: ""
+      },
+      {
+          title:"Key",
+              data: "key",
+          defaultContent: ""
+      },
+      {
+          title:"Eth Addr",
+              data: "ethereum_address",
+          defaultContent: ""
+      },
+      {
+          title:"Complete",
+              data: "complete",
+          defaultContent: ""
+      }
+  ]} />
+      </Grid.Column>
+      </Grid.Row>
 
             <Grid.Row>
                 <Grid.Column>
