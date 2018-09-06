@@ -1,7 +1,7 @@
 const usgAddr = "0x187d34bf93d6be78cb2f9f0bec269a01be70a9ca";
 const usgOwner = "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87";
 let web3 = window.web3;
-
+console.log("AN UPDATE HAPPENED!");
 function checkForAccount() {
   setTimeout(async () => {
     window.acct = (await window.web3js.eth.getAccounts())[0];
