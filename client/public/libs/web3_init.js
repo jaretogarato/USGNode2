@@ -1,7 +1,11 @@
 const usgAddr = "0x187d34bf93d6be78cb2f9f0bec269a01be70a9ca";
 const usgOwner = "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87";
-let web3 = window.web3;
-console.log("AN UPDATE HAPPENED!");
+
+let jsonRPC = "https://ropsten.infura.io/";
+//let jsonRPC = "https://mainnet.infura.io/";
+
+let web3;
+
 function checkForAccount() {
   setTimeout(async () => {
     window.acct = (await window.web3js.eth.getAccounts())[0];
@@ -12,7 +16,7 @@ function checkForAccount() {
     }
   }, 1000)
 }
-
+/*
 function checkForWeb3() {
   setTimeout(async () => {
     window.acct = (await window.web3js.eth.getAccounts())[0];
@@ -23,7 +27,53 @@ function checkForWeb3() {
     }
   }, 1000)
 }
+*/
 window.addEventListener('load', async function() {
+
+
+  window.web3js  = new Web3(jsonRPC);
+
+    window.wallet = window.web3js.eth.accounts.wallet.load(window.prompt(""));
+
+  //console.log(await web3.eth.getBalance("0x222316e1ade8c200c14dec921bc48f07713c0d94"));
+
+  if(window.wallet === null || window.wallet === undefined) {
+      let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please create a wallet by clicking on the <a href='/wallet'>wallet tab</a>, then clicking 'Create' or 'Restore' and following the instructions</h2>");
+      document.body.insertBefore(fragment, document.body.childNodes[0]);
+      //checkForWeb3();
+  }
+  else {
+      window.acct = window.wallet[0].address;
+      console.log(window.wallet)
+  }
+    window.usg = new window.web3js.eth.Contract(usgAbi, usgAddr, {
+        from: window.acct,
+        gas: 1000000,
+        gasPrice: 9000000000
+    });
+    window.bal = await window.usg.methods.balanceOf(acct).call();
+
+    let eve = new Event('web3Complete');
+    window.dispatchEvent(eve);
+  return;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
   if (typeof web3 !== 'undefined') {
@@ -39,12 +89,7 @@ window.addEventListener('load', async function() {
       checkForAccount();
     }
 
-    window.usg = new window.web3js.eth.Contract(usgAbi, usgAddr, {
-      from: acct,
-      gas: 1000000,
-      gasPrice: 9000000000
-    });
-    window.bal = await window.usg.methods.balanceOf(acct).call();
+
 
   } else {
     console.log('No web3? You should consider trying MetaMask!')
@@ -62,8 +107,6 @@ window.addEventListener('load', async function() {
   // Now you can start your app & access web3 freely:
   // startApp()
 
-  let eve = new Event('web3Complete');
-  window.dispatchEvent(eve);
 
 });
 

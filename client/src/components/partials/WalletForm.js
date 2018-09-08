@@ -94,17 +94,20 @@ class WalletForm extends Component {
   render() {
     const { ethereum_address_to, amt_to_Send } = this.state;
 
+
+
     return (
 
 
-        <FullWidthDiv topColor='#fff' bottomColor='#ddd' id={4}>
-        <h2>Send USG</h2>
-        <Container>
-
           <Form onSubmit={this.handleSubmit}>
-            <Grid padded stackable>
+            <Grid padded >
+                <Grid.Row>
+                    <Grid.Column >
+                        <h2>Send USG</h2>
+                    </Grid.Column>
+                </Grid.Row>
               <Grid.Row>
-                <Grid.Column width={6}>
+                <Grid.Column >
                   <Form.Field>
                     <input
                       id='ethereum_address_to'
@@ -119,7 +122,7 @@ class WalletForm extends Component {
                 
               </Grid.Row>
               <Grid.Row>
-              <Grid.Column width={6}>
+              <Grid.Column >
                   <Form.Field>
                     <input
                       id='amt_to_Send'
@@ -131,14 +134,15 @@ class WalletForm extends Component {
                   </Form.Field>
                 </Grid.Column>
               </Grid.Row>
-            </Grid>
-            <Segment basic textAlign='center'>
-              <USGButton type='submit'>Submit</USGButton>
-            </Segment>
-          </Form>
-        </Container>
 
-      </FullWidthDiv>
+                <Grid.Row>
+                    <Grid.Column >
+                        <USGButton type='submit'>Submit</USGButton>
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+
+          </Form>
     );
   }
 }
