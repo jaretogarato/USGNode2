@@ -19,19 +19,65 @@ import Fade from 'react-reveal/Fade';
 import USGoldToken from '../../assets/images/usg-token.png';
 
 import { withRouter } from 'react-router-dom';
+
+
+
+
+
+
+
+
+
+
 class WalletControls extends Component {
     state = { pw: '', words: ''};
 
 
+    readSingleFile(e) {
 
+
+        let f = e.target.files[0];
+        if (!f) {
+            return;
+        }
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var contents = e.target.result;
+           // this.displayContents(contents);
+
+            var element = document.getElementById('file');
+            //element.textContent = contents;
+
+            window.file = contents;
+        };
+        reader.readAsText(f);
+    }
     componentDidMount =  () => {
         window.addEventListener("web3Complete", this.setWeb3);
-
+        /*document.getElementById('file')
+            .addEventListener('change', this.readSingleFile, false);*/
     }
 
 
-    restoreWallet(){}
-    lockWallet(){}
+
+
+
+    lockWallet(){
+        window.localStorage.removeItem('hasPW');
+        window.localStorage.removeItem('pw');
+        window.location.reload();
+    }
+    unlockWallet() {
+        if(localStorage.getItem('hasAccount') ) {
+            let pw = window.prompt("input your password to unlock your wallet");
+            window.wallet = window.web3js.eth.accounts.wallet.load(pw);
+            window.localStorage.setItem('hasPW', true);
+            window.localStorage.setItem('pw', pw);
+            window.location.reload();
+        }
+
+
+    }
     forgetWallet(){
 
         if(window.wallet != undefined && window.wallet != null){
@@ -41,10 +87,76 @@ class WalletControls extends Component {
                 return;
             }
             window.wallet = null;
+            //set has account = false;
+            window.localStorage.removeItem('hasAccount');
+            window.localStorage.removeItem('hasPW');
+            window.localStorage.removeItem('pw');
+            window.location.reload();
         }
     }
-    backupWallet(){}
+    backupWallet(){
+        let encryptedKeystore = window.wallet.encrypt(window.prompt("Password to encrypt the backup with: "));
+        var a = window.document.createElement('a');
+        let stringKetstore = JSON.stringify(encryptedKeystore);
+        var blob = new Blob([stringKetstore], {type: 'text/csv'});
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'test.usg';
+
+// Append anchor to body.
+        document.body.appendChild(a);
+        a.click();
+
+// Remove anchor from body
+        document.body.removeChild(a);
+
+
+    }
+
+    restoreWalletSubmit = async ( event) => {
+
+        const { pw,words } = this.state;
+        event.preventDefault();
+
+        let file = JSON.parse(window.file);
+
+        console.log(file);
+        //return;
+        if(localStorage.getItem('hasAccount')){
+
+            if (!window.confirm("are you sure you want to restore a wallet? this will overwrite your currently loaded wallet (your funds will be safe, but you will have to recover the wallet later")) {
+                return;
+            }
+
+            window.wallet.clear();
+            window.localStorage.removeItem('hasPW');
+            window.localStorage.removeItem('pw');
+            window.localStorage.removeItem('hasAccount');
+            window.wallet = null;
+        }
+
+        window.wallet = window.web3js.eth.accounts.wallet.decrypt(file, this.state.pw);
+
+        window.acct = window.wallet[0].address;
+
+        window.wallet.save(this.state.pw);
+
+        //let decryptedKeystore = window.wallet.decrypt(file, this.state.pw);
+
+       // console.log(decryptedKeystore);
+
+        window.localStorage.setItem('hasAccount', true);
+        window.pw = this.state.pw;
+        window.localStorage.setItem('hasPW', true);
+        window.localStorage.setItem('pw', this.state.pw);
+
+
+        window.location.reload();
+    }
+
+
     createWalletSubmit = async ( event) => {
+
+        event.preventDefault();
 
         if(window.wallet != undefined && window.wallet != null){
 
@@ -62,14 +174,30 @@ class WalletControls extends Component {
         console.log(window.wallet)
         window.acct = window.wallet[0].address;
 
+
        window.wallet.save(this.state.pw);
-       //TODO: download backup file
 
-        //TODO: refresh page
-       // console.log(acct)
-        console.log(window.web3js.eth.accounts)
-        event.preventDefault();
 
+
+        let encryptedKeystore = window.wallet.encrypt(this.state.pw);
+        var a = window.document.createElement('a');
+        let stringKetstore = JSON.stringify(encryptedKeystore);
+        var blob = new Blob([stringKetstore], {type: 'text/csv'});
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'test.usg';
+
+// Append anchor to body.
+        document.body.appendChild(a);
+        a.click();
+
+// Remove anchor from body
+        document.body.removeChild(a);
+        //set has account = true;
+        window.localStorage.setItem('hasAccount', true);
+        window.pw = this.state.pw;
+        window.localStorage.setItem('hasPW', true);
+        window.localStorage.setItem('pw', this.state.pw);
+        window.location.reload();
     }
     handleChange = event => {
         // use 'event' to grab the id off the element also the value and set state
@@ -80,7 +208,7 @@ class WalletControls extends Component {
         console.log(this.state);
     }
     render() {
-        const { pw,words } = this.state;
+        const { pw,words,file } = this.state;
 
 
 
@@ -136,7 +264,25 @@ class WalletControls extends Component {
                             </Modal>
                         </Grid.Column>
                         <Grid.Column >
-                            <USGButton onClick={this.restoreWallet} >Restore</USGButton>
+                            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton >Restore</USGButton>}>
+
+                                <Modal.Content style={inlineStyle.content} >
+                                    <Modal.Description>
+                                        <Header>Disclaimer</Header>
+                                        <p>[[[[[[[[[INSERT DISCLAIMER HERE]]]]]]]]]]</p>
+                                        <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device.</p>
+                                        <Header>Restore Wallet</Header>
+                                        <Form onSubmit={this.restoreWalletSubmit}>
+                                            <input value={pw} id={"pw"} name={"pw"} type={'password'} placeholder={"Password"}
+                                                   onChange={this.handleChange} />
+                                            <br />
+                                            <input onChange={this.readSingleFile} id={"file"} name={"file"} type={"file"} />
+                                            <USGButton type='submit'>Submit</USGButton>
+                                        </Form>
+
+                                    </Modal.Description>
+                                </Modal.Content>
+                            </Modal>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row id="walletLock">

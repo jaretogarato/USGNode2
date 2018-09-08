@@ -33,13 +33,29 @@ window.addEventListener('load', async function() {
 
   window.web3js  = new Web3(jsonRPC);
 
-    window.wallet = window.web3js.eth.accounts.wallet.load(window.prompt(""));
+
+  if(localStorage.getItem('hasAccount')) {
+    if(localStorage.getItem('hasPW')) {
+        window.wallet = window.web3js.eth.accounts.wallet.load(localStorage.getItem('pw'));
+    }
+    else {
+        let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please unlock your wallet to see your balance and enable features</h2>");
+        document.body.insertBefore(fragment, document.body.childNodes[0]);
+    }
+
+  }
+  else {
+      let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please create a wallet by clicking on the <a href='/wallet'>wallet tab</a>, then clicking 'Create' or 'Restore' and following the instructions</h2>");
+      document.body.insertBefore(fragment, document.body.childNodes[0]);
+  }
+
+
+
 
   //console.log(await web3.eth.getBalance("0x222316e1ade8c200c14dec921bc48f07713c0d94"));
 
   if(window.wallet === null || window.wallet === undefined) {
-      let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please create a wallet by clicking on the <a href='/wallet'>wallet tab</a>, then clicking 'Create' or 'Restore' and following the instructions</h2>");
-      document.body.insertBefore(fragment, document.body.childNodes[0]);
+
       //checkForWeb3();
   }
   else {
