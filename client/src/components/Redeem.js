@@ -37,7 +37,7 @@ class Redeem extends Component {
             This is easy.
           </OpenP> */}
           <OpenP>
-            Just enter the quantity you wish to redeem, and your full shipping address with your name or your company name in the USA.
+            Just enter the quantity you wish to redeem, and your full shipping address with your name and / or your company name in the USA.
           </OpenP>
           <OpenP>
             If you are redeeming from outside of the USA, please call 1-800-673-5800 and one of our customer service representatives will help you.

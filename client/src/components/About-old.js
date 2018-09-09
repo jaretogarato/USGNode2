@@ -53,9 +53,7 @@ class About extends Component {
           <Container>
             <OpenH3>
               {/* US Gold Currency is committed to providing a safe, stable-value cryptocurrency with all of the benefits of the best digital currencies, but without the peaks and valleys in value experienced by many cryptocurrencies. */}
-              {/* With over 30 years of experience in monetary gold, US Gold in 2016 expanded into the cryptocurrency sector with the US Gold Currency brand, and created the US Gold blockchain currency token <b>USG</b>. */}
-              Over 30 years in monetary gold. <br />
-              A new perspective on blockchain currency.
+              With over 30 years of experience in monetary gold, US Gold in 2016 expanded into the cryptocurrency sector with the US Gold Currency brand, and created the US Gold blockchain currency token <b>USG</b>.
             </OpenH3>
           </Container>
         </FullWidthDiv>

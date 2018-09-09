@@ -27,6 +27,7 @@ import BBBGray from '../assets/images/bbb-gray-400x.png';
 import FincenGray from '../assets/images/fincen-gray-400x.png';
 import WyomingGray from '../assets/images/wyoming-seal-gray-400x.png';
 import GoldBarsHoriz from '../assets/images/gold-bars-horiz.jpg';
+import CubesTwo from '../assets/images/cubes-gold-02.png';
 
 // USGInUSD in is master value for entire application
 import {USGInUSD} from './partials/USGInUSD';
@@ -110,8 +111,8 @@ class Home extends Component {
                   US Gold Currency
                 </HhH1>
                 <HhH2>
+                  The convenience of digital money. <br />
                   The security of the blockchain.<br />
-                  The convenience of digital. <br />
                   The stability of gold.
                 </HhH2>
               </HhTextContainer>
@@ -132,19 +133,24 @@ class Home extends Component {
                 <Grid.Column>
                   <FlexRowContainer>
                     <div>
-                      <Img src={BricksGold} width={127} height={80} mode='fit' alt="Gold bricks" />
+                      {/* <Img src={BricksGold} width={127} height={80} mode='fit' alt="Gold bricks" /> */}
+                      <Img src={CubeGold} width={127} height={110} mode='fit' alt="Gold bricks" />
+
                     </div>
                     <OpenP>
-                      {/* Each USG token is backed by an American Eagle one ounce gold coin, and may be redeemed any time for the physical coin. */}
                       Each USG token is backed by an American Eagle one ounce gold coin, minted by the United States Mint, and may be redeemed any time for the physical coin.
                     </OpenP>
                   </FlexRowContainer>
                 </Grid.Column>
                 <Grid.Column>
                   <FlexRowContainer>
-                    <div>
+                    {/* <div>
                       <Img src={InfinityBlue} width={127} height={80} mode='fit' alt="Infinity symbol" />
+                    </div> */}
+                    <div>
+                      <Img src={CubesTwo} width={127} height={118} mode='fit' alt="US Gold Currency Symbol" />
                     </div>
+
                     <OpenP>
                       {/* Our blockchain currency is a utility token with a stable value by design. It’s a true virtual currency, and an ideal safe haven from cryptocurrency market volatility. */}
 
