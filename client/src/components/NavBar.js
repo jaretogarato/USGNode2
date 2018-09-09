@@ -150,7 +150,7 @@ class NavBar extends Component {
 
   render() {
     return (
-      <Container>
+      <Container >
         {/* <NavStyled navOpacity={this.state.navBgOpacity}> */}
         {/* <NavStyled navOpacity={1}>
           <a href="/" alt="US Gold Currency">

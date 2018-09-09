@@ -4,6 +4,7 @@ import TopBg from '../assets/images/us-gold-header-bg.jpg';
 import Footer from './partials/Footer';
 import WalletForm from './partials/WalletForm';
 import WalletBalance from './partials/WalletBalance';
+import WalletControls from './partials/WalletControls';
 import Fade from 'react-reveal/Fade';
 // import WalkingLiberty from '../assets/images/walking-liberty-coin.png';
 import Img from './partials/Img';
@@ -22,11 +23,15 @@ import {
 } from '../css/styledComponents';
 
 class Wallet extends Component {
-    
- 
+
+
   render() {
-   
-    
+      let divStyle = {
+          display: "inline-block",
+          maxWidth:"500px"
+
+      };
+
     
     
     return (
@@ -36,20 +41,16 @@ class Wallet extends Component {
             <WalletBalance title='USG Wallet' />
           </Container>
         </HeroHeader>
+          <Container>
+              <div style={divStyle}>
+                  <WalletForm />
+              </div>
+              <div style={divStyle}>
+                  <WalletControls />
+              </div>
+          </Container>
 
-        <Container>
-          <WalletForm />
-        </Container>
-        <Container>
-          <Grid>
-            <Grid.Row>
-              <Grid.Column>
-                &nbsp;
-              </Grid.Column>
-            </Grid.Row>
 
-          </Grid>
-        </Container>
 
         <Footer />
       </Container>

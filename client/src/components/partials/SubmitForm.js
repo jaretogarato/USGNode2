@@ -140,7 +140,7 @@ class SubmitForm extends Component {
                       id='ethereum_address'
                       placeholder='Ethereum Address'
 
-                        readonly
+                        readOnly
                       value={ethereum_address}
                      // onChange={this.handleChange}
                     />
