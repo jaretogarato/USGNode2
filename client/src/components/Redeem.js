@@ -31,7 +31,7 @@ class Redeem extends Component {
         </HeroHeader>
         <Container>
           <OpenH3>
-            US Gold Currency Token Redeption
+            US Gold Currency Token Redemption
           </OpenH3>
           {/* <OpenP>
             This is easy.
