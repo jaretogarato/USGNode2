@@ -42,7 +42,7 @@ import '../css/react-reveal.css';
 import '../css/mailchimp.css';
 import {
   HeroHeader, HhInnerContainer, HhTextContainer,
-  HhImageContainer, HhH1, HhH2,
+  HhImageContainer, HhH1, HhH2, HhH3,
   Img2,
   FullWidthDiv, FullWidthBgDiv,
   FlexRowContainer,
@@ -110,11 +110,11 @@ class Home extends Component {
                 <HhH1>
                   US Gold Currency
                 </HhH1>
-                <HhH2>
+                <HhH3>
                   The convenience of digital money. <br />
                   The security of the blockchain.<br />
                   The stability of gold.
-                </HhH2>
+                </HhH3>
               </HhTextContainer>
               <Fade>
                 <HhImageContainer bgImage={USGoldToken} />

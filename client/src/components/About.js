@@ -64,24 +64,46 @@ class About extends Component {
           <Container>
             <Grid>
               <Grid.Row>
-                <Grid.Column width={9}>
+                <Grid.Column width={10}>
                   <Grid>
                     <Grid.Row>
                       <Grid.Column>
-                        <OpenH3 textAlign='left'>Here For A Reason</OpenH3>
+                        <OpenH3 textAlign='left'>Why USG?</OpenH3>
                         <HrOrange />
-                        <OpenP textAlign='left'>
-                          Today the USG token – designed for the emerging cryptocurrency sector, has addressed the fundamental question: <strong>How do you create a stable-value blockchain currency that’s actually supported by a hard asset currency?</strong>
-                        </OpenP>
+                        <OpenH3 textAlign='left'>
+                          We created the USG token to provide an option in the world of crypto that is both stable and backed by a hard asset.
+                        </OpenH3>
+                        <OpenH4 textAlign='left'>
+                          Consumers and businesses benefit from a secure crytpo token than is not subject to the volatile swings of the markets, and from the opportunity to easily exchange their digital currency into a tangible asset: monetary gold coins produced by the U.S. Mint.
+                        </OpenH4>
+
+                          {/* Today the USG token – designed for the emerging cryptocurrency sector, has addressed the fundamental question: <strong>How do you create a stable-value blockchain currency that’s actually supported by a hard asset currency?</strong> */}
+{/*
                         <OpenP textAlign='left'>
                           A blockchain currency backed by gold was the obvious answer, and US Gold Currency the obvious company to implement it.
-                        </OpenP>
-                        <OpenP textAlign='left'>
+                        </OpenP> */}
+                        {/* <OpenP textAlign='left'>
                           Although an independent company, US Gold Currency relies on decades of operational experience through US Gold – founded in 1980. The entire staff is dedicated to providing our expertise to this global currency opportunity and will remain committed to providing superior customer service and integration of the USG token to the crypto market as a safe, stable, convenient and redeemable alternative to the price volatility often found in emerging markets.
                           Our focus is on creating the support mechanism for global payment systems around the world providing economic benefit to the underserved as well as the investments firms seeking the required stability that only comes from a Hard-Asset blockchain platform.
+                        </OpenP> */}
+                        {/* <OpenP textAlign='left'>
+                          We are stewards and students of business trends, technology, and investing.
+                        </OpenP> */}
+                        <OpenP textAlign='left'>
+                          {/* founded in 1980
+                          committed to excellent customer service */}
+
+                          We have created a safe, stable, and convenient mechanism to allow a new set of payment systems which are completely scalable and operate everywhere the world. The USG currency stabilizes the financial systems that use it.
                         </OpenP>
                         <OpenP textAlign='left'>
-                          We are stewards and students of business trends, technology, and investing.
+                          Most financial systems, such as Bitcoin, Etherem, and  government-issued fiat currencies, are based on trust. In contrast, USG currency is 100% backed by monetary gold and will always have a 1-to-1 exchange ratio with the American Eagle one-ounce gold coins issued by the U.S. Mint.
+                          {/* **tokenization of real currency**
+                          true currency backed by monetary gold
+                          us treasury minted gold currency */}
+                          {/* What backs our currency is real currency. */}
+
+
+
                         </OpenP>
 
                       </Grid.Column>
@@ -89,7 +111,7 @@ class About extends Component {
 
                   </Grid>
                 </Grid.Column>
-                <Grid.Column width={7}>
+                <Grid.Column width={6}>
                   <h1>&nbsp;</h1>
                   <Fade bottom>
                     {/* <Img src={CubesFiveGold} width={400} height={404} marginTop='-130px' /> */}
