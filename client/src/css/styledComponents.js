@@ -108,6 +108,20 @@ export const HhH2 = styled.h2`
     font-size: 30px;
   }
 `
+// export const HhH3 = styled.h2`
+//   display: flex;
+//   color: white;
+//   font-family: 'Open Sans', sans-serif;
+//   font-weight: 300;
+//   font-size: 30px;
+//   line-height: 30px;
+//   margin: 0;
+//   padding: 0;
+//
+//   @media (max-width: ${breaks.tablet}) {
+//     font-size: 30px;
+//   }
+// `
 export const HhH4 = styled.h4`
   display: flex;
   color: white;
