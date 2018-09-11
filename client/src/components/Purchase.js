@@ -32,7 +32,7 @@ class Contact extends Component {
             Purchase USG
         </HhH1>
         <HhH2>
-            Call (800) 673-5800
+            Call +1.800.673.5800
         </HhH2>
             <HhH4>
         or fill out the form below
