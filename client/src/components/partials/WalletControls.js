@@ -33,6 +33,7 @@ class WalletControls extends Component {
     state = { pw: '', words: ''};
 
 
+
     readSingleFile(e) {
 
 
@@ -228,7 +229,8 @@ class WalletControls extends Component {
             },
             input:{
                 margin:'5px'
-            }
+            },
+            buttonStyle: { width:"120px" }
 
         };
 
@@ -242,7 +244,7 @@ class WalletControls extends Component {
                     </Grid.Row>
                     <Grid.Row id="noWallet"  >
                         <Grid.Column width={4}>
-                            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={ <USGButton onClick={this.createWallet} >Create</USGButton>}>
+                            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={ <USGButton style={inlineStyle.buttonStyle} onClick={this.createWallet} >Create</USGButton>}>
 
                                 <Modal.Content style={inlineStyle.content} >
                                     <Modal.Description>
@@ -264,7 +266,7 @@ class WalletControls extends Component {
                             </Modal>
                         </Grid.Column>
                         <Grid.Column >
-                            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton >Restore</USGButton>}>
+                            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton  style={inlineStyle.buttonStyle} >Restore</USGButton>}>
 
                                 <Modal.Content style={inlineStyle.content} >
                                     <Modal.Description>
@@ -287,18 +289,18 @@ class WalletControls extends Component {
                     </Grid.Row>
                     <Grid.Row id="walletLock">
                         <Grid.Column width={4}>
-                            <USGButton onClick={this.lockWallet} >Lock</USGButton>
+                            <USGButton onClick={this.lockWallet}  style={inlineStyle.buttonStyle} >Lock</USGButton>
                         </Grid.Column>
                         <Grid.Column >
-                            <USGButton onClick={this.unlockWallet} >Unlock</USGButton>
+                            <USGButton onClick={this.unlockWallet}  style={inlineStyle.buttonStyle} >Unlock</USGButton>
                         </Grid.Column>
                     </Grid.Row>
                     <Grid.Row id="walletUnlocked">
                         <Grid.Column  width={4}>
-                            <USGButton onClick={this.forgetWallet} >Forget</USGButton>
+                            <USGButton onClick={this.forgetWallet} style={inlineStyle.buttonStyle}  >Forget</USGButton>
                         </Grid.Column>
                         <Grid.Column >
-                            <USGButton onClick={this.backupWallet} >Backup</USGButton>
+                            <USGButton onClick={this.backupWallet}  style={inlineStyle.buttonStyle} >Backup</USGButton>
                         </Grid.Column>
                     </Grid.Row>
                 </Grid>

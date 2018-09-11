@@ -140,7 +140,7 @@ class Footer extends React.Component {
                     Connections
                   </OpenH4>
                   <OpenP color='white' textAlign='left'>
-                    <b>800-673-5800</b> | <a href='mailto:support@usgold.io'><OpenSpanWhite>support@usgold.io</OpenSpanWhite></a>
+                    <b>+1.800.673.5800</b> | <a href='mailto:support@usgold.io'><OpenSpanWhite>support@usgold.io</OpenSpanWhite></a>
                   </OpenP>
                   <HrWhite />
                     <Grid>
@@ -264,9 +264,7 @@ class Footer extends React.Component {
                     <Grid.Row>
                       <Grid.Column width={16}>
                         <OpenPSmall textAlign='center' color='white'>
-                          <Icon name='phone' />+1-800-673-5800
-                          &nbsp; &nbsp; | &nbsp; &nbsp;
-                          <Icon name='map pin' />1603 Capitol Ave., Cheyenne, WY 82001
+                          <Icon name='phone' />+1.800.673.5800
                           &nbsp; &nbsp; | &nbsp; &nbsp;
                           <Icon name='mail outline' /><a href="mailto:support@usgold.io">support@usgold.io</a>
                         </OpenPSmall>

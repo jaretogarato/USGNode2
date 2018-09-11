@@ -54,8 +54,7 @@ class About extends Component {
             <OpenH3>
               {/* US Gold Currency is committed to providing a safe, stable-value cryptocurrency with all of the benefits of the best digital currencies, but without the peaks and valleys in value experienced by many cryptocurrencies. */}
               {/* With over 30 years of experience in monetary gold, US Gold in 2016 expanded into the cryptocurrency sector with the US Gold Currency brand, and created the US Gold blockchain currency token <b>USG</b>. */}
-              Over 30 years in monetary gold. <br />
-              A new perspective on blockchain currency.
+              Make gold money again
             </OpenH3>
           </Container>
         </FullWidthDiv>
@@ -70,9 +69,9 @@ class About extends Component {
                       <Grid.Column>
                         <OpenH3 textAlign='left'>Why USG?</OpenH3>
                         <HrOrange />
-                        <OpenH3 textAlign='left'>
+                        <OpenH4 textAlign='left'>
                           We created the USG token to provide an option in the world of crypto that is both stable and backed by a hard asset.
-                        </OpenH3>
+                        </OpenH4>
                         <OpenH4 textAlign='left'>
                           Consumers and businesses benefit from a secure crytpo token than is not subject to the volatile swings of the markets, and from the opportunity to easily exchange their digital currency into a tangible asset: monetary gold coins produced by the U.S. Mint.
                         </OpenH4>
@@ -89,14 +88,14 @@ class About extends Component {
                         {/* <OpenP textAlign='left'>
                           We are stewards and students of business trends, technology, and investing.
                         </OpenP> */}
-                        <OpenP textAlign='left'>
+                        <OpenH4 textAlign='left'>
                           {/* founded in 1980
                           committed to excellent customer service */}
 
-                          We have created a safe, stable, and convenient mechanism to allow a new set of payment systems which are completely scalable and operate everywhere the world. The USG currency stabilizes the financial systems that use it.
-                        </OpenP>
-                        <OpenP textAlign='left'>
-                          Most financial systems, such as Bitcoin, Etherem, and  government-issued fiat currencies, are based on trust. In contrast, USG currency is 100% backed by monetary gold and will always have a 1-to-1 exchange ratio with the American Eagle one-ounce gold coins issued by the U.S. Mint.
+                          We have created a safe, stable, and convenient mechanism to allow a new set of payment systems which are completely scalable and operate everywhere in the world. The USG currency stabilizes the financial systems that use it.
+                        </OpenH4>
+                        <OpenH4 textAlign='left'>
+                          Most financial systems, such as Bitcoin, Ethereum, and  government-issued fiat currencies, are based on trust. In contrast, USG currency is 100% backed by monetary gold and will always have a 1-to-1 exchange ratio with the American Eagle one-ounce gold coins issued by the U.S. Mint.
                           {/* **tokenization of real currency**
                           true currency backed by monetary gold
                           us treasury minted gold currency */}
@@ -104,7 +103,7 @@ class About extends Component {
 
 
 
-                        </OpenP>
+                        </OpenH4>
 
                       </Grid.Column>
                     </Grid.Row>
@@ -132,7 +131,7 @@ class About extends Component {
                 </Grid.Column>
                 <Grid.Column>
                   <OpenH5 textAlign='center'>
-                    USG tokens may be redeemed at any time at a 1-to-1 token-to-coin ratio.
+                    USG tokens may be redeemed at any time for the physical gold coin.
                   </OpenH5>
                   {/* <OpenH5 textAlign='center'>
                     US Gold Currency LLC is located on the "Crypto Plain" in Wyoming.
@@ -235,7 +234,7 @@ class About extends Component {
                           Each USG token is a direct representation of an American Eagle one ounce gold coin, issued by the United State Mint, and held in vault storage reserves by US Gold Currency.
                         </OpenP>
                         <OpenP textAlign='left'>
-                          Additionally, each USG Token may be redeemed at any time at a 1-to-1 token-to-coin ratio!
+                          Additionally, each USG Token may be redeemed at any time for the physical gold coin.
                         </OpenP>
                       </Grid.Column>
                     </Grid.Row>

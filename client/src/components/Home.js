@@ -126,7 +126,7 @@ class Home extends Component {
         <FullWidthDiv topColor='#f9f9f9' bottomColor='#f9f9f9'>
           <Container>
             <OpenH3>
-              USG tokens are direct digital representations of American Eagle one ounce gold coins, minted by the United States of America — in cryptographic form — and can be redeemed at any time for the physical version of the coin.
+              USG tokens are direct representations of American Eagle one ounce gold coins, minted by the United States of America — in cryptographic form.
             </OpenH3>
             <Grid stackable>
               <Grid.Row columns='equal'>
@@ -154,7 +154,7 @@ class Home extends Component {
                     <OpenP>
                       {/* Our blockchain currency is a utility token with a stable value by design. It’s a true virtual currency, and an ideal safe haven from cryptocurrency market volatility. */}
 
-                      Our blockchain currency is a utility token with a stable value by design. It’s a true virtual currency, ideal for global payment systems and a safe haven coin from crypto market volatility.
+                      Our blockchain currency is a utility token with a <em>stable-value</em> by design. It’s a true virtual currency, ideal for global payment systems and a safe haven coin from crypto market volatility.
                     </OpenP>
                   </FlexRowContainer>
                 </Grid.Column>
@@ -559,7 +559,7 @@ class Home extends Component {
         <FullWidthBgDiv minHeight='600px' id={7}>
           <Container>
             <OpenH3 style={styles.padTop}>
-              Buy it, Hold it, Spend it, Redeem it
+                Buy it, Spend it, Hold it, Sell it
             </OpenH3>
             <Grid>
               <Grid.Row>
@@ -568,10 +568,6 @@ class Home extends Component {
                     Easy To Buy
                   </OpenH4>
                   <HrOrange />
-                  <OpenP textAlign='left'>
-                    {/* It’s simple. Just create an account and order as many US Gold tokens as you like. We accept these forms of payment: Ethereum, ACH transfer, or Visa debit. And if you have other forms of cryptocurrenncy, you can easily convert them to Ethereum at ShapeShift. */}
-                    Purchasing USG tokens is easy. Call us at (800) 673-5800 or use the <a href="/purchase"> purchase form</a>.
-                  </OpenP>
 
                   <OpenH4 textAlign='left'>
                     Easy To Redeem

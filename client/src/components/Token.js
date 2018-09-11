@@ -127,7 +127,7 @@ class Token extends Component {
                   </OpenH3>
                   <VerticalSpacer height={50} />
                   <OpenH4 color='white'>
-                    Ready to buy USG tokens? We make it easy by accepting Ethereum for payment. Don't have Ethereum? No problem -- just go to ShapeShift to easily convert your crypto, and you're in business!
+                    Ready to buy USG tokens? We make it easy by accepting Ethereum for payment. Don't have Ethereum? No problem -- just go to <a href='https://shapeshift.io' >ShapeShift</a> to easily convert your crypto, and you're in business!
                   </OpenH4>
                   <OpenH4 color='white'>
                     Ready to redeem USG tokens? We give you the added benefit of the option to redeem your USG tokens with us directly at any time for gold American Eagle one ounce coins, any time, at a 1-to-1 token-to-coin ratio.

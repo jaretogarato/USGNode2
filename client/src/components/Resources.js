@@ -67,25 +67,6 @@ class Resources extends Component {
             <Grid stackable padded centered>
               <Grid.Row columns='equal'>
 
-          <Grid.Column>
-          <Fade bottom delay={200}>
-          <Card>
-          <Image src={LogoMetamask} />
-      <Card.Content>
-      <Card.Header>Tools</Card.Header>
-      <Card.Meta>
-      <a href="https://www.metamask.io/" target="_blank" rel="noopener noreferrer">
-          metamask.io
-          </a>
-          </Card.Meta>
-          <Card.Description>
-          MetaMask is a browser extension plugin that allows you to load your Ethereum wallet and run Ethereum dApps right in your browser without running a full Ethereum node.
-      </Card.Description>
-      </Card.Content>
-      </Card>
-      </Fade>
-      </Grid.Column>
-
                 <Grid.Column>
                   <Fade bottom>
                     <Card>
@@ -169,10 +150,10 @@ class Resources extends Component {
                     <Card>
                       <Image src={LogoUSMint} />
                       <Card.Content>
-                        <Card.Header>The US Mint</Card.Header>
+                        <Card.Header>US Mint</Card.Header>
                         <Card.Meta>
-                          <a href="https://catalog.usmint.gov/coins/gold-coins/" target="_blank" rel="noopener noreferrer">
-                            usmint.com
+                          <a href="https://catalog.usmint.gov/american-eagle-2016-one-ounce-gold-proof-coin-16EB.html?cgid=gold-coins" target="_blank" rel="noopener noreferrer">
+                            usmint.gov
                           </a>
                         </Card.Meta>
                         <Card.Description>
