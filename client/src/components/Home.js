@@ -113,10 +113,14 @@ class Home extends Component {
             buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
             expires={150}
           >
-            I understand that this this website uses cookies to enhance the user experience.{" "}
-            {/* <span style={{ fontSize: "10px" }}>
-            This bit of text is smaller :O
-            </span> */}
+            <Container>
+              We use cookies on this site to enhance your user experience.<br />
+              <span style={{ fontSize: "10px" }}>
+              By clicking any link on this site you give your consent for us to use cookies. 
+              </span>
+              {" "}
+            </Container>
+
           </CookieConsent>
         </Container>
 
