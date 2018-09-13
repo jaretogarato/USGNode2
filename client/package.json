@@ -21,6 +21,7 @@
     "node-sass": "^4.7.2",
     "react": "^16.2.0",
     "react-accessible-accordion": "^2.4.2",
+    "react-cookie-consent": "^1.7.0",
     "react-dom": "^16.2.0",
     "react-imation": "^0.5.3",
     "react-on-screen": "^2.0.4",

@@ -28,6 +28,7 @@ import FincenGray from '../assets/images/fincen-gray-400x.png';
 import WyomingGray from '../assets/images/wyoming-seal-gray-400x.png';
 import GoldBarsHoriz from '../assets/images/gold-bars-horiz.jpg';
 import CubesTwo from '../assets/images/cubes-gold-02.png';
+import CookieConsent from "react-cookie-consent";
 
 // USGInUSD in is master value for entire application
 import {USGInUSD} from './partials/USGInUSD';
@@ -103,6 +104,26 @@ class Home extends Component {
   render() {
     return (
       <Container fluid>
+        <Container>
+          <CookieConsent
+            location="top"
+            buttonText="Yes, I agree"
+            cookieName="myAwesomeCookieName2"
+            style={{ background: "#2B373B" }}
+            buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
+            expires={150}
+          >
+            <Container>
+              We use cookies on this site to enhance your user experience.<br />
+              <span style={{ fontSize: "10px" }}>
+              By clicking any link on this site you give your consent for us to use cookies. 
+              </span>
+              {" "}
+            </Container>
+
+          </CookieConsent>
+        </Container>
+
         <HeroHeader bgImage={TopBg}>
           <Container>
             <HhInnerContainer>
