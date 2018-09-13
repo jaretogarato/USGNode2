@@ -36,6 +36,7 @@ import FetchUser from './FetchUser';
 import { Switch, Route } from 'react-router-dom';
 import '../css/fonts.css';
 import '../css/semantic-ui/semantic.min.css';
+import Ticker from './partials/CryptoTicker';
 
 class App extends Component {
 
@@ -45,6 +46,7 @@ class App extends Component {
 
     return (
       <div>
+        <Ticker />
         <NavBar />
         <NavSpacer />
         <Flash />
