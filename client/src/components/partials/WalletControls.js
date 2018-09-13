@@ -22,17 +22,8 @@ import { withRouter } from 'react-router-dom';
 
 
 
-
-
-
-
-
-
-
 class WalletControls extends Component {
     state = { pw: '', words: ''};
-
-
 
     readSingleFile(e) {
 
