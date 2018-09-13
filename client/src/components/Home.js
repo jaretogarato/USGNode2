@@ -29,6 +29,7 @@ import WyomingGray from '../assets/images/wyoming-seal-gray-400x.png';
 import GoldBarsHoriz from '../assets/images/gold-bars-horiz.jpg';
 import CubesTwo from '../assets/images/cubes-gold-02.png';
 import CookieConsent from "react-cookie-consent";
+import EthereumLogo from '../assets/images/ethereum-logo.jpg';
 
 // USGInUSD in is master value for entire application
 import {USGInUSD} from './partials/USGInUSD';
@@ -116,7 +117,7 @@ class Home extends Component {
             <Container>
               We use cookies on this site to enhance your user experience.<br />
               <span style={{ fontSize: "10px" }}>
-              By clicking any link on this site you give your consent for us to use cookies. 
+              By clicking any link on this site you give your consent for us to use cookies.
               </span>
               {" "}
             </Container>
@@ -584,12 +585,25 @@ class Home extends Component {
             </OpenH3>
             <Grid>
               <Grid.Row>
-                <Grid.Column width={7}>
+                <Grid.Column width={8}>
                   <OpenH4 textAlign='left'>
                     Easy To Buy
                   </OpenH4>
                   <HrOrange />
-
+                  <OpenP textAlign='left'>
+                    Purchasing USG tokens is easy. Here's where to start: <br />
+                    <a href='/purchase'><USGButton>Buy</USGButton></a>
+                     {/* <a href="/register">Create your USG account</a>, confirm your email address, and select the number of USG tokens you would like to buy. */}
+                  </OpenP>
+                  {/* <OpenP textAlign='left'>
+                    Three forms of payments are currently accepted. 1) Ethereum  (ETH), 2) Bank Wire Transfer (BWT), 3) Visa Debit.
+                    Click here - go to the purchase page
+                  </OpenP>
+                  <OpenP textAlign='left'>
+                    If you need to convert other cryptocurrencies into ETH, please consider <a href='https://shapeshift.io/#/coins' target='_blank' rel='nofollow noreferrer'>ShapeShift</a>.
+                  </OpenP> */}
+                </Grid.Column>
+                <Grid.Column width={8}>
                   <OpenH4 textAlign='left'>
                     Easy To Redeem
                   </OpenH4>
@@ -597,9 +611,6 @@ class Home extends Component {
                   <OpenP textAlign='left'>
                     Once you have your USG tokens, you can do whatever you want with them: exchange them for other currencies, save them, trade them for goods and services - just like any currency.
                   </OpenP>
-                  {/* <OpenP textAlign='left'>
-                    And if you ever decide you’d like to redeem your tokens for 1 oz American Eagle gold coins minted by the U.S. Mint, just put in the order in your account along with a valid mailing address, and we’ll ship them to you at no charge.
-                  </OpenP> */}
                   <OpenP textAlign='left'>
                     Redeeming USG tokens is easy: simply submit a redemption form, and transfer the tokens to the US Gold Currency Ethereum address. Your American Eagle one ounce gold coins are pulled from the gold vault, prepared for shipment, and sent to the verified physical address within your account profile.
                   </OpenP>
@@ -607,11 +618,11 @@ class Home extends Component {
                     All physical gold coins are shipped through United Parcel Service (UPS) – Parcel Pro, and will require a government issued identification with a matching adult signature upon delivery.
                   </OpenP>
                 </Grid.Column>
-                <Grid.Column width={1} />
+                {/* <Grid.Column width={1} />
                 <Grid.Column width={8}>
-                  {/* <Image src={PaymentsAccepted} size='medium' /> */}
+
                   <Img src={PaymentsAccepted} width={300} height={526} marginTop='-65px' />
-                </Grid.Column>
+                </Grid.Column> */}
               </Grid.Row>
               <Grid.Row>
                 <Grid.Column>
