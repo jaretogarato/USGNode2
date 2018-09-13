@@ -240,7 +240,9 @@ class WalletControls extends Component {
                                 <Modal.Content style={inlineStyle.content} >
                                     <Modal.Description>
                                         <Header>Disclaimer</Header>
-                                        <p>[[[[[[[[[INSERT DISCLAIMER HERE]]]]]]]]]]</p>
+                                        <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device.
+Any password you create when creating or returning to use your wallet containing a US Gold Currency – USG Token is solely the responsible of the creator (you) of the wallet.
+We are unable to assist in the recovery of any passwords or private keys in the event they become lost, and strongly recommend that you select a compliant provider of Cold-Storage services to hold a copy of your passwords and/or private keys in the event of such a loss.</p>
                                         <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device.</p>
                                         <Header>Create Wallet</Header>
                                         <Form onSubmit={this.createWalletSubmit}>
@@ -262,7 +264,9 @@ class WalletControls extends Component {
                                 <Modal.Content style={inlineStyle.content} >
                                     <Modal.Description>
                                         <Header>Disclaimer</Header>
-                                        <p>[[[[[[[[[INSERT DISCLAIMER HERE]]]]]]]]]]</p>
+                                        <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device.
+Any password you create when creating or returning to use your wallet containing a US Gold Currency – USG Token is solely the responsible of the creator (you) of the wallet.
+We are unable to assist in the recovery of any passwords or private keys in the event they become lost, and strongly recommend that you select a compliant provider of Cold-Storage services to hold a copy of your passwords and/or private keys in the event of such a loss.</p>
                                         <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device.</p>
                                         <Header>Restore Wallet</Header>
                                         <Form onSubmit={this.restoreWalletSubmit}>
