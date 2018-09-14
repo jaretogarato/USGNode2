@@ -34,20 +34,30 @@ import ReactTrackDemo from './ReactTrackDemo';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/fonts.css';
 import '../css/semantic-ui/semantic.min.css';
 import Ticker from './partials/CryptoTicker';
 
+
+
 class App extends Component {
 
+  constructor(props){
+    super(props);
+
+  }
 
   render() {
+     // console.log(this.context.router.location.pathname)
+      console.log(this);
 
 
     return (
       <div>
+
         <Ticker />
+        <br />
         <NavBar />
         <NavSpacer />
         <Flash />
@@ -76,7 +86,6 @@ class App extends Component {
             <Route exact path='/register' component={AccountNew} />
             <Route exact path='/registration-pending' component={RegistrationPending} />
 
-            <AuthRoute exact path='/login' component={Login} />
             {/* <Route exact path='/register2' component={AccountNew} /> */}
             <ProtectedRoute path='/leads' component={Leads} />
             <ProtectedRoute path='/users' component={Users} />

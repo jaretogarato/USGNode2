@@ -119,6 +119,14 @@ app.post('/api/login', (req, res) => {
 });
 
 
+
+app.get('/api/usgprice', (req, res) => {
+    console.log('usgPrice!')
+    let price = 1556.99;
+
+    res.send({ USG: price });
+})
+
 /*
 app.get('/api/tableTest', (req, res)=>{
 
