@@ -35,7 +35,7 @@ const adapter = new FileSync('db.json')
 const db = low(adapter)
 
 
-db.defaults({ purchaseRequests: [], functionCalls:  [], leads: []}).write()
+db.defaults({ purchaseRequests: [], functionCalls:  [], leads: [], usgPrice: 0}).write()
 
 app.post('/api/purchase', (req, res)=>{
 
@@ -91,20 +91,33 @@ function makeid(length) {
 }
 
 
-const appOwner = "0x602c788eb3eabbf43e3f129172e79f5142d12c87";
+const appOwner = "0x61c5A2b1CC16f728D19cc80Fa73ea81C14C7E720";
 
 let web3 = new Web3();
 
+
+/*
+
+{ signature:
+   { message: 'Fri Sep 14 2018 16:05:56 GMT-0600 (Mountain Daylight Time)',
+     messageHash: '0x5b0ce4becefddf919640131dc72b3a8fe7667c75eec2d47cde13b8a6db519a2f',
+     v: '0x1c',
+     r: '0x40c76e0c91bd2156977525c3d88d086c9322dc62a391865ddee0d627d29222e4',
+     s: '0x75505a4cd288014e825eeea325d3245b4a0425bab51e527f6ed99aeb7deee1cd',
+     signature: '0x40c76e0c91bd2156977525c3d88d086c9322dc62a391865ddee0d627d29222e475505a4cd288014e825eeea325d3245b4a0425bab51e527f6ed99aeb7deee1cd1c' },
+
+*/
+
 app.post('/api/login', (req, res) => {
 
-
+    console.log(req.body)
 
    // console.log(web3.eth)
-    let recover = web3.eth.accounts.recover(req.body.timestamp,req.body.signature);
+    let recover = web3.eth.accounts.recover(req.body.signature.message,req.body.signature.signature);
     log("sender: ");
     log(recover);
 
-    if(recover.toUpperCase() === appOwner.toUpperCase() && new Date(req.body.timestamp) > Date.now() - (1000 * 60 * 5) ){
+    if(recover.toUpperCase() === appOwner.toUpperCase() && new Date(req.body.signature.message) > Date.now() - (1000 * 60 * 5) ){
         //timestamp must be less than 5min old
         req.session.isAdmin = true;
         log("OK!");
@@ -120,10 +133,34 @@ app.post('/api/login', (req, res) => {
 
 
 
-app.get('/api/usgprice', (req, res) => {
-    console.log('usgPrice!')
-    let price = 1556.99;
+let usgPriceFile = './usgPrice.json'
+app.post('/api/setusgprice', async (req, res)=>{
+  //  console.log(req.body)
 
+
+    let message = JSON.parse(req.body.message);
+
+    if(req.session.isAdmin) {
+            let price = message.price;
+            console.log(message.price)
+            //set price in usgPriceFile
+
+
+            db.set('usgPrice',  Number(price)).write();
+
+        }
+
+    res.send("OK")
+})
+
+
+app.get('/api/usgprice', (req, res) => {
+
+
+    //load price from usgPriceFile
+
+    let price = Number(db.get('usgPrice'));
+    console.log(price);
     res.send({ USG: price });
 })
 

@@ -20,6 +20,7 @@ import {
   HrOrange,
   USGButton,
 } from '../css/styledComponents';
+import {  Form } from 'semantic-ui-react';
 
 import axios from 'axios';
 
@@ -28,7 +29,8 @@ class Wallet extends Component {
 
     async doLogin() {
         //hash and sign now
-        let acct = (await window.web3js.eth.getAccounts())[0];
+        console.log(window.wallet);
+        let acct = window.wallet[0];
         console.log(acct);
 
 
@@ -37,7 +39,7 @@ class Wallet extends Component {
 
         console.log(timestamp)
 
-        let thing  = await window.web3js.eth.personal.sign(timestamp,  acct);
+        let thing  = window.wallet[0].sign(timestamp);
 
 
         axios.post('api/login', {signature:thing, timestamp:timestamp})
@@ -47,17 +49,62 @@ class Wallet extends Component {
                // history.push('');
             })
             .catch( err => {
-                console.log('Failed to add contact');
+                console.log('Failed to log in');
             });
 
     }
 
     componentDidMount() {
 
+        axios.get('api/usgprice').then(
+            (d)=>{
+              console.log(d.data.USG)
+                this.setState({price: d.data.USG})
+            }
+        );
     }
- 
-  render() {
+ state = { price: 0 }
 
+    handleChange = event => {
+
+        console.log("q")
+        // use 'event' to grab the id off the element also the value and set state
+        // const { id, value } = event.target;
+        const id = event.target.id;
+        const value = event.target.value;
+        this.setState({ [id]: value });
+        // console.log(this.state);
+    }
+    handlePriceChangeSubmit = (e) =>{
+        e.preventDefault();
+
+        const {price} = this.state;
+        console.log(price)
+
+        let toSign = {
+            price : price,
+            time : Date.now()
+        }
+
+        let sig = window.wallet[0].sign(JSON.stringify(toSign));
+        console.log(sig);
+
+        //send sig to server
+        axios.post('/api/setusgprice', sig)  .then(function (res) {
+
+            //TODO: error handling
+            console.log(res.data)
+
+           window.location.reload();
+
+        })
+            .catch( err => {
+                console.log(err);
+            });
+    }
+
+  render() {
+      const {price} = this.state;
       const $ = require('jquery');
       $.DataTable = require('datatables.net');
     
@@ -67,6 +114,21 @@ class Wallet extends Component {
 
         <Container>
           <Grid>
+
+
+              <Grid.Row>
+                  <Grid.Column>
+                      <h2>Set USG Price</h2>
+                      <Form onSubmit={this.handlePriceChangeSubmit}>
+                          <Form.Field>
+                              Price: <input step="50" id={'price'} name={'price'} onChange={this.handleChange} value={price} type={"number"} />
+                              <USGButton type='submit'>Change Price</USGButton>
+                          </Form.Field>
+                      </Form>
+                  </Grid.Column>
+              </Grid.Row>
+
+
             <Grid.Row>
               <Grid.Column>
                 <h2>Leads</h2>
@@ -161,6 +223,8 @@ class Wallet extends Component {
   ]} />
       </Grid.Column>
       </Grid.Row>
+
+
 
             <Grid.Row>
                 <Grid.Column>

@@ -301,6 +301,25 @@ class WalletControls extends Component {
           <USGButton onClick={this.backupWallet} style={inlineStyle.buttonStyle}>Backup</USGButton>
         </Grid.Column>
       </Grid.Row>
+        <Grid.Row id="walletUnlocked">
+          <Grid.Column >
+          <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
+                  inlineStyle.buttonStyle
+              } > Paper Wallet</USGButton>}>
+
+          <Modal.Content style={inlineStyle.content}>
+          <Modal.Description>
+              <Header>Disclaimer</Header>
+              <p>Keep this safe, this is everything necessary to </p>
+              <Header>Restore Wallet</Header>
+              <Form onSubmit={this.restoreWalletSubmit}>
+                <h1>IT's A THING</h1>
+              </Form>
+              </Modal.Description>
+          </Modal.Content>
+          </Modal>
+          </Grid.Column>
+      </Grid.Row>
     </Grid>);
   }
 }
