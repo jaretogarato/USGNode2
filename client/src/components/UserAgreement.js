@@ -817,9 +817,9 @@ class UserAgreement extends Component {
 
         <FullWidthDiv topColor='#f9f9f9' bottomColor='#f9f9f9' id={1}>
           <Container>
-            <OpenH5>
-              Last Updated on June 30, 2018. This User Agreement is effective June 30, 2018 for all users
-            </OpenH5>
+            <OpenH4>
+              This User Agreement is effective as of September 1, 2018 for all users.
+            </OpenH4>
             <OpenP>
               By using the US Gold Currency LLC (“USGC”) website – <strong>www.USGold.io</strong> (“Website”), and other services provided by USGC, including purchasing US Gold Currency LLC Cryptocurrency Token(s) (“USG”) from USGC, you are agreeing to the following terms, including, without limitation, the Terms of Use in the User Agreement. These terms apply to all purchases whether made through the Website, by telephone or otherwise.
             </OpenP>

@@ -225,6 +225,13 @@ class Footer extends React.Component {
                       Privacy Policy
                     </OpenP>
                   </a>
+
+                  <a href="/mediakit" alt="media kit">
+                    <OpenP color='white' deco='underline' textAlign='left' paddingBottom='0.5em'>
+                      Media Kit
+                    </OpenP>
+                  </a>
+
                   <a href="/user-agreement" alt="user agreement">
                     <OpenP color='white' deco='underline' textAlign='left' paddingBottom='0.5em'>
                       User Agreement

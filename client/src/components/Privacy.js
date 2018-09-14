@@ -431,12 +431,12 @@ class Privacy extends Component {
               (*)  Collectively, the "Service". <br />
               The terms "we", "us", and "US GOLD" refer to US Gold Currency LLC, a Wyoming limited liability company, with its headquarters in Cheyenne, Wyoming, USA. When you use the Service, you consent to our collection, use, and disclosure of information about you as described in this Privacy Policy.
             </OpenP>
-            <OpenP textAlign='left'>
-              Last Updated on June 20, 2018. This Privacy Policy is effective June 20, 2018 for all users.
-            </OpenP>
+              <OpenH4>
+                This Privacy Policy is effective September 1, 2018 for all users.
+              </OpenH4>
           </Container>
         </FullWidthDiv>
-
+        
         <Footer />
       </Container>
     );
