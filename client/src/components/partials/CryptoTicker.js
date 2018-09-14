@@ -46,6 +46,8 @@ let tickerStyles = {
 };
 
 
+let prices = {};
+
 function updateTicker(){
 
     console.log("qq")
@@ -59,15 +61,43 @@ function updateTicker(){
         if (!error && response.statusCode == 200) {
             var importedJSON = JSON.parse(body);
             console.log(importedJSON);
+            let count = 0;
             for(let itmIdx in importedJSON){
-
+                if( count == 2)
 
                 if(importedJSON[itmIdx] <= 0){
                     continue;
                 }
                 let val = (1/importedJSON[itmIdx]).toFixed(2);
+                let style = tickerStyles.tickerItem_unch;
+                let symbol = '';
 
-                liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_unch) +'">'+itmIdx+' $'+ val+', </li>';
+                if(prices[itmIdx] === undefined ){
+                    let rand = Math.random();
+                    if(rand > .7){
+                        style = tickerStyles.tickerItem_down;
+                        symbol = "▼";
+                    }
+                    else if(rand > .6){
+                        style = tickerStyles.tickerItem_up;
+                        symbol = "▲";
+                    }
+                }
+                else if(  prices[itmIdx] > val){
+                    style = tickerStyles.tickerItem_down;
+                    symbol = "▼";
+                }
+                else if(  prices[itmIdx] < val){
+                    style = tickerStyles.tickerItem_up;
+                    symbol = "▲";
+                }
+
+
+                liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(style) +'">'+itmIdx+ symbol+' $'+ val+' </li>' ;
+
+                prices[itmIdx] = val;
+
+                count++;
             }
 
             $("#ticker").webTicker('update',
@@ -88,7 +118,7 @@ function updateTicker(){
     setTimeout(()=>{
         updateTicker();
 
-    },60000);
+    },30000);
 
     //iterate over list of top 42 (as of 9/13/2018)
     //https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT
