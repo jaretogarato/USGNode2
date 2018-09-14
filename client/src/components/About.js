@@ -73,7 +73,7 @@ class About extends Component {
                           We created the USG token to provide an option in the world of crypto that is both stable and backed by a hard asset.
                         </OpenH4>
                         <OpenH4 textAlign='left'>
-                          Consumers and businesses benefit from a secure crytpo token than is not subject to the volatile swings of the markets, and from the opportunity to easily exchange their digital currency into a tangible asset: monetary gold coins produced by the U.S. Mint.
+                          Consumers and businesses benefit from a secure crytpo token that is not subject to the volatile swings of the markets, and from the opportunity to easily exchange their digital currency into a tangible asset: monetary gold coins produced by the U.S. Mint.
                         </OpenH4>
 
                           {/* Today the USG token – designed for the emerging cryptocurrency sector, has addressed the fundamental question: <strong>How do you create a stable-value blockchain currency that’s actually supported by a hard asset currency?</strong> */}
