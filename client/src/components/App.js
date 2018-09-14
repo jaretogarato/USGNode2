@@ -56,6 +56,7 @@ class App extends Component {
       <div>
 
         <Ticker />
+        <br />
         <NavBar />
         <NavSpacer />
         <Flash />
@@ -83,7 +84,6 @@ class App extends Component {
             <Route exact path='/register' component={AccountNew} />
             <Route exact path='/registration-pending' component={RegistrationPending} />
 
-            <AuthRoute exact path='/login' component={Login} />
             {/* <Route exact path='/register2' component={AccountNew} /> */}
             <ProtectedRoute path='/leads' component={Leads} />
             <ProtectedRoute path='/users' component={Users} />

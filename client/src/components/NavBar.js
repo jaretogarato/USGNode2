@@ -136,14 +136,7 @@ class NavBar extends Component {
 
     return (
       <Menu.Menu style={styles.navbarPrimary} position='right'>
-        <Menu.Item
-          as={Link}
-          to='/login'
-          style={styles.navText}
-          name="Login"
-          active={this.state.activeItem === 'Login'}
-          onClick={this.handleItemClick}
-        />
+
       </Menu.Menu>
     );
   }

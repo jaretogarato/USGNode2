@@ -41,6 +41,9 @@ let tickerStyles = {
     tickerItem_down: {
         color:'red'
     },
+    tickerItem_dim: {
+        color:'grey'
+    },
     tickerItem_gold: {
         color:'gold'
     }
@@ -65,6 +68,9 @@ async function getJSON(url) {
     });
 }
 
+
+let hasSetUSG = false;
+
 async function updateTicker(){
 
     console.log("qq")
@@ -80,29 +86,33 @@ async function updateTicker(){
     let coinListJson = await getJSON(coinListUrl);
 
     console.log(coinListJson)
-    let count = 0;
+    let count = 5;
+    let usgPriceUrl = window.location.protocol +"//"+window.location.host+ '/api/usgprice';
+    let usgPriceJson = await getJSON(usgPriceUrl);
+    console.log(usgPriceJson);
+    console.log(usgPriceJson.USG);
+
+    let usgCount = 0;
     for(let itmIdx in coinListJson){
 
-        if( count === 2 ) {
+        if( count %7 === 0) {
 
-            let usgPriceUrl = window.location.protocol +"//"+window.location.host+ '/api/usgprice';
-            let usgPriceJson = await getJSON(usgPriceUrl);
-            console.log(usgPriceJson);
-            console.log(usgPriceJson.USG);
 
-            let newItem = '<li data-update="USG" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG +' </li>';
+
+            let newItem = '<li data-update="USG' + usgCount +'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG +' </li>';
             console.log(newItem)
 
             liString += newItem;
 
-
+            usgCount++;
 
         }
+
 
         if(coinListJson[itmIdx] <= 0){
             continue;
         }
-        let val = (1/coinListJson[itmIdx]).toFixed(2);
+        let val = (1/coinListJson[itmIdx]).toFixed(3);
         let style = tickerStyles.tickerItem_unch;
         let symbol = '';
 
@@ -134,6 +144,8 @@ async function updateTicker(){
         count++;
     }
 
+    liString += '<li data-update="attribution" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_dim) +'">(prices provided by cryptocompare.com)</li>' ;
+
     $("#ticker").webTicker('update',
 
 
@@ -148,7 +160,7 @@ async function updateTicker(){
     setTimeout(()=>{
         updateTicker();
 
-    },30000);
+    },60000);
 
     //iterate over list of top 42 (as of 9/13/2018)
     //https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT
