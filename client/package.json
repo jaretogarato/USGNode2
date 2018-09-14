@@ -53,7 +53,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3001",
+"proxy": { "/api": { "target": "http://localhost:3001" } },
   "devDependencies": {
     "datatables.net": "^1.10.19",
     "jquery": "^3.3.1"

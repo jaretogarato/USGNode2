@@ -40,6 +40,9 @@ let tickerStyles = {
     },
     tickerItem_down: {
         color:'red'
+    },
+    tickerItem_gold: {
+        color:'gold'
     }
 
 
@@ -47,73 +50,100 @@ let tickerStyles = {
 
 
 let prices = {};
+const request = require('request');
+async function getJSON(url) {
+    return new Promise((res,err) => {
+        request(url, function (error, response, body) {
+            if (!error && response.statusCode === 200) {
+                let importedJSON = JSON.parse(body);
+                res(importedJSON);
+            }
+            else {
+                err(error);
+            }
+        });
+    });
+}
 
-function updateTicker(){
+async function updateTicker(){
 
     console.log("qq")
     //get coin list
     //https://min-api.cryptocompare.com/data/all/coinlist
 
-    var request = require('request');
-
     let liString ='';
-    request('https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            var importedJSON = JSON.parse(body);
-            console.log(importedJSON);
-            let count = 0;
-            for(let itmIdx in importedJSON){
-                if( count == 2)
-
-                if(importedJSON[itmIdx] <= 0){
-                    continue;
-                }
-                let val = (1/importedJSON[itmIdx]).toFixed(2);
-                let style = tickerStyles.tickerItem_unch;
-                let symbol = '';
-
-                if(prices[itmIdx] === undefined ){
-                    let rand = Math.random();
-                    if(rand > .7){
-                        style = tickerStyles.tickerItem_down;
-                        symbol = "▼";
-                    }
-                    else if(rand > .6){
-                        style = tickerStyles.tickerItem_up;
-                        symbol = "▲";
-                    }
-                }
-                else if(  prices[itmIdx] > val){
-                    style = tickerStyles.tickerItem_down;
-                    symbol = "▼";
-                }
-                else if(  prices[itmIdx] < val){
-                    style = tickerStyles.tickerItem_up;
-                    symbol = "▲";
-                }
-
-
-                liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(style) +'">'+itmIdx+ symbol+' $'+ val+' </li>' ;
-
-                prices[itmIdx] = val;
-
-                count++;
-            }
-
-            $("#ticker").webTicker('update',
 
 
 
-                liString,
-                'swap',
-                true,
-                false
-            );
+
+    let coinListUrl = 'https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT';
+    let coinListJson = await getJSON(coinListUrl);
+
+    console.log(coinListJson)
+    let count = 0;
+    for(let itmIdx in coinListJson){
+
+        if( count === 2 ) {
+
+            let usgPriceUrl = window.location.protocol +"//"+window.location.host+ '/api/usgprice';
+            let usgPriceJson = await getJSON(usgPriceUrl);
+            console.log(usgPriceJson);
+            console.log(usgPriceJson.USG);
+
+            let newItem = '<li data-update="USG" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG +' </li>';
+            console.log(newItem)
+
+            liString += newItem;
+
 
 
         }
 
-    })
+        if(coinListJson[itmIdx] <= 0){
+            continue;
+        }
+        let val = (1/coinListJson[itmIdx]).toFixed(2);
+        let style = tickerStyles.tickerItem_unch;
+        let symbol = '';
+
+        if(prices[itmIdx] === undefined ){
+            let rand = Math.random();
+            if(rand > .7){
+                style = tickerStyles.tickerItem_down;
+                symbol = "▼";
+            }
+            else if(rand > .6){
+                style = tickerStyles.tickerItem_up;
+                symbol = "▲";
+            }
+        }
+        else if(  prices[itmIdx] > val){
+            style = tickerStyles.tickerItem_down;
+            symbol = "▼";
+        }
+        else if(  prices[itmIdx] < val){
+            style = tickerStyles.tickerItem_up;
+            symbol = "▲";
+        }
+
+
+        liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(style) +'">'+itmIdx+ symbol+' $'+ val+' </li>' ;
+
+        prices[itmIdx] = val;
+
+        count++;
+    }
+
+    $("#ticker").webTicker('update',
+
+
+
+        liString,
+        'swap',
+        true,
+        false
+    );
+
 
     setTimeout(()=>{
         updateTicker();

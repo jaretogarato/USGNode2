@@ -33,19 +33,28 @@ import ReactTrackDemo from './ReactTrackDemo';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import '../css/fonts.css';
 import '../css/semantic-ui/semantic.min.css';
 import Ticker from './partials/CryptoTicker';
 
+
+
 class App extends Component {
 
+  constructor(props){
+    super(props);
+
+  }
 
   render() {
+     // console.log(this.context.router.location.pathname)
+      console.log(this);
 
 
     return (
       <div>
+
         <Ticker />
         <NavBar />
         <NavSpacer />
