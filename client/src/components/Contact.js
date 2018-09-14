@@ -46,7 +46,8 @@ class Contact extends Component {
             <Grid.Column width={2}></Grid.Column>
             <Grid.Column width={12}>
               <OpenH3>
-                Send us your questions or comments, and someone will be in touch with you as soon as possible.
+                Please send us any questions or comments about our website or products. A US Gold Currency representative will be happy to assist. And, thank you!
+              
               </OpenH3>
             </Grid.Column>
             <Grid.Column width={2}></Grid.Column>
