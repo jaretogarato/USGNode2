@@ -134,33 +134,12 @@ class MediaKit extends Component {
                   </OpenP>
                 </Grid.Column>
               </Grid.Row>
-              {/* <Grid.Row>
-                <Grid.Column width={6}>
-                  <Image src={USGLogoSymbol} size='small' alt="USG Logo Symbol" />
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <OpenH3 textAlign='left'>Backgrounds</OpenH3>
-
-Habeo torquatos per cu. Sea scripta tibique pertinacia at, sed te tritani fierent recteque, no his modo zril legendos.
-                </Grid.Column>
-              </Grid.Row> */}
-              {/* <Grid.Row>
-                <Grid.Column width={8}>
-                  abc
-                </Grid.Column>
-                <Grid.Column width={8}>
-                  <OpenH3 textAlign='left'>Colors</OpenH3>
-
-
-Habeo torquatos per cu. Sea scripta tibique pertinacia at, sed te tritani fierent recteque, no
-                </Grid.Column>
-              </Grid.Row> */}
 
             </Grid>
           </Container>
         </FullWidthDiv>
 
-        <FullWidthDiv topColor='#ebebeb' bottomColor='#fff' id={4}>
+        {/* <FullWidthDiv topColor='#ebebeb' bottomColor='#fff' id={4}>
           <Container>
             <Grid>
               <Grid.Row>
@@ -191,9 +170,9 @@ Habeo torquatos per cu. Sea scripta tibique pertinacia at, sed te tritani fieren
             </Grid>
           </Container>
           <Img src={RowOfBlocks} width='100%' height={200} mode='fill' />
-        </FullWidthDiv>
+        </FullWidthDiv> */}
 
-        <FullWidthDiv topColor='#222' bottomColor='#000' height={400}>
+        {/* <FullWidthDiv topColor='#222' bottomColor='#000' height={400}>
           <Container>
             <Grid>
               <Grid.Row>
@@ -214,7 +193,7 @@ Habeo torquatos per cu. Sea scripta tibique pertinacia at, sed te tritani fieren
               </Grid.Row>
             </Grid>
           </Container>
-        </FullWidthDiv>
+        </FullWidthDiv> */}
 
         <Footer />
       </Container>
