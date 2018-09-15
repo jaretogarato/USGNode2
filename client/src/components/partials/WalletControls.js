@@ -164,8 +164,6 @@ class WalletControls extends Component {
       window.wallet = null;
     }
 
-      console.log("QQ")
-      console.log(window.file.length)
       if(window.file === null || window.file === undefined || window.isElement(window.file)){
           console.log(this.state.pk)
         let account = window.web3js.eth.accounts.privateKeyToAccount(this.state.pk);
