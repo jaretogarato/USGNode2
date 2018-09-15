@@ -28,6 +28,11 @@ function checkForWeb3() {
   }, 1000)
 }
 */
+function closeNote(){
+    let note = document.getElementById("walletNote");
+    note. parentNode. removeChild(note);
+}
+
 window.addEventListener('load', async function() {
 
 
@@ -39,13 +44,17 @@ window.addEventListener('load', async function() {
         window.wallet = window.web3js.eth.accounts.wallet.load(localStorage.getItem('pw'));
     }
     else {
-        let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please unlock your wallet to see your balance and enable features</h2>");
+        let fragment = create("<h2 id='walletNote'  style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please unlock your wallet to see your balance and enable features" +
+            "<button style='float:right;' onclick='closeNote()'>x</button>"+
+            "</h2>");
         document.body.insertBefore(fragment, document.body.childNodes[0]);
     }
 
   }
   else {
-      let fragment = create("<h2 style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please create a wallet by clicking on the <a href='/wallet'>wallet tab</a>, then clicking 'Create' or 'Restore' and following the instructions</h2>");
+      let fragment = create("<h2 id='walletNote' style='background-color: rgb(251,217,49);position: fixed; padding:15px;margin:0;bottom: 0;left:0;right:0;z-index: 99999;'>Please create a wallet by clicking on the <a href='/wallet'>wallet tab</a>, then clicking 'Create' or 'Restore' and following the instructions"
+          + "<button  style='float:right;'  onclick='closeNote()'>x</button>"
+          + "</h2>");
       document.body.insertBefore(fragment, document.body.childNodes[0]);
   }
 

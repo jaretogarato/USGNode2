@@ -56,7 +56,7 @@ class NavBar extends Component {
         <div className='navWrap'>
           <div className='navLogo'>
             <a href="/" alt="US Gold Currency">
-              <Img src={LogoImage} width={240} height={60} marginTop='14px'/>
+              <Img src={LogoImage} width={240} height={60} marginTop='24px' />
             </a>
           </div>
             { this.mainNavs() }
@@ -77,11 +77,11 @@ class NavBar extends Component {
         <NavLink name='About' to='/about' isCurrent={this.isRouteCurrent('/about')} />
         {/* <NavLink name='Services' to='/services' isCurrent={this.isRouteCurrent('/services')} /> */}
         <NavLink name='Token' to='/token' isCurrent={this.isRouteCurrent('/token')} />
-
       <NavLink name='Purchase' to='/purchase' isCurrent={this.isRouteCurrent('/purchase')} />
         <NavLink name='Wallet' to='/wallet' isCurrent={this.isRouteCurrent('/wallet')} />
         <NavLink name='Redeem' to='/redeem' isCurrent={this.isRouteCurrent('/redeem')} />
       <NavLink name='Contact' to='/contact' isCurrent={this.isRouteCurrent('/contact')} />
+          <NavLink name='Media' to='/mediakit' isCurrent={this.isRouteCurrent('/mediakit')} />
         <NavLink name='Resources' to='/resources' isCurrent={this.isRouteCurrent('/resources')} />
         {/* <p>{this.props.user.id ? this.props.user.id : "nothing here"}</p> */}
       </NavLinks>

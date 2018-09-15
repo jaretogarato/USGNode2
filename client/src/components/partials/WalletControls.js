@@ -30,6 +30,8 @@ import {
 } from '../../css/styledComponents';
 import Img from './Img';
 
+
+import LogoImage from '../../assets/images/us-gold-logo.png';
 import {
   Header,
   Form,
@@ -45,11 +47,24 @@ import Fade from 'react-reveal/Fade';
 import USGoldToken from '../../assets/images/usg-token.png';
 
 import {withRouter} from 'react-router-dom';
+let $ = require('jquery');
+let jQuery = $;
+let QRCode = require('qrcode')
+
+//Returns true if it is a DOM element
+window.isElement = (o)=>{
+    return (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    );
+}
+
 
 class WalletControls extends Component {
   state = {
     pw: '',
-    words: ''
+    words: '',
+      pk: ''
   };
 
   readSingleFile(e) {
@@ -123,15 +138,18 @@ class WalletControls extends Component {
     document.body.removeChild(a);
 
   }
-
-  restoreWalletSubmit = async (event) => {
-
-    const {pw, words} = this.state;
+  createPaperWalletSubmit = async (event) => {
     event.preventDefault();
 
-    let file = JSON.parse(window.file);
+  }
+  restoreWalletSubmit = async (event) => {
+    event.preventDefault();
+    const {pw, words, pk} = this.state;
 
-    console.log(file);
+      let file = null;
+
+
+
     //return;
     if (localStorage.getItem('hasAccount')) {
 
@@ -146,9 +164,22 @@ class WalletControls extends Component {
       window.wallet = null;
     }
 
-    window.wallet = window.web3js.eth.accounts.wallet.decrypt(file, this.state.pw);
+      if(window.file === null || window.file === undefined || window.isElement(window.file)){
+          console.log(this.state.pk)
+        let account = window.web3js.eth.accounts.privateKeyToAccount(this.state.pk);
+          window.web3js.eth.accounts.wallet.add(account);
+          window.wallet = window.web3js.eth.accounts.wallet;
 
-    window.acct = window.wallet[0].address;
+      }
+      else  {
+          file = JSON.parse(window.file);
+          window.wallet = window.web3js.eth.accounts.wallet.decrypt(file, this.state.pw);
+      }
+
+
+
+
+    window.acct = window.wallet.address;
 
     window.wallet.save(this.state.pw);
 
@@ -214,7 +245,41 @@ class WalletControls extends Component {
     this.setState({[id]: value});
     console.log(this.state);
   }
+
+
+  async loadQrs(){
+
+
+    console.log(window.wallet[0].privateKey);
+      console.log(window.wallet[0].address);
+
+     // $("#paperWalletPAQR").QRCode()
+
+      let pk = await QRCode.toDataURL(window.wallet[0].privateKey);
+      let pub = await QRCode.toDataURL(window.wallet[0].address);
+
+      console.log(pk);
+      console.log(pub);
+
+
+      $("#paperWalletPKQR").append("<img src='"+ pk+"'>");
+      $("#paperWalletPKQR").append("<p>"+ window.wallet[0].privateKey +"</p><br/><br/>");
+
+      $("#paperWalletPAQR").append("<img src='"+ pub+"'>");
+      $("#paperWalletPAQR").append("<p>"+ window.wallet[0].address+"</p><br/><br/>");
+
+      $('body > :not(#paperWalletModal)').hide(); //hide all nodes directly under the body
+      $('#instructions').hide();
+
+      $('#paperWalletModal').css('width', "100%");
+      $('#paperWalletModal').css('height', "100%");
+
+
+  }
   render() {
+
+
+
     const {pw, words, file} = this.state;
 
     let inlineStyle = {
@@ -275,9 +340,15 @@ class WalletControls extends Component {
                 <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device. Any password you create when creating or returning to use your wallet containing a US Gold Currency – USG Token is solely the responsible of the creator (you) of the wallet. We are unable to assist in the recovery of any passwords or private keys in the event they become lost, and strongly recommend that you select a compliant provider of Cold-Storage services to hold a copy of your passwords and/or private keys in the event of such a loss.</p>
                 <Header>Restore Wallet</Header>
                 <Form onSubmit={this.restoreWalletSubmit}>
+                  password:
                   <input value={pw} id={"pw"} name={"pw"} type={'password'} placeholder={"Password"} onChange={this.handleChange}/>
                   <br/>
+                  <br />
+                  backup file
                   <input onChange={this.readSingleFile} id={"file"} name={"file"} type={"file"}/>
+                    <br />
+                  OR restore from private key (used with paper wallets)
+                    <input onChange={this.handleChange} id={"pk"} name={"pk"} type={"password"}/>
                   <USGButton type='submit'>Submit</USGButton>
                 </Form>
               </Modal.Description>
@@ -300,6 +371,45 @@ class WalletControls extends Component {
         <Grid.Column >
           <USGButton onClick={this.backupWallet} style={inlineStyle.buttonStyle}>Backup</USGButton>
         </Grid.Column>
+      </Grid.Row>
+        <Grid.Row id="walletUnlocked">
+          <Grid.Column >
+            <Modal id="paperWalletModal" style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
+                    inlineStyle.buttonStyle
+                } > Paper Wallet</USGButton>}>
+
+              <Modal.Content style={inlineStyle.content}>
+                <Modal.Description >
+                    <h1> <Img src={LogoImage} width={240} height={60} />  US Gold Currency Paper Wallet</h1>
+                    <Header>Disclaimer</Header>
+                    <p>Keep this safe, this is everything necessary to control this wallet</p>
+                </Modal.Description>
+
+
+                  <Form onSubmit={this.createPaperWalletSubmit}>
+                      <div id="instructions">
+                        <p>If you are sure, press: </p>
+                        <USGButton onClick={this.loadQrs} >Generate Paper Wallet</USGButton>
+                      </div>
+                      <div id="public">
+                          <h3>Public Address</h3>
+                          <p>Give this to anyone who might want to send you tokens</p>
+                          <div id='paperWalletPAQR' ></div>
+                      </div>
+
+
+                      <div id="private">
+                        <h3>Private Key</h3>
+                        <p>Keep this safe from prying eyes</p>
+                        <div id='paperWalletPKQR' ></div>
+                      </div>
+
+                      <h4>Please print this page, then refresh your browser</h4>
+
+                  </Form>
+              </Modal.Content>
+            </Modal>
+          </Grid.Column>
       </Grid.Row>
     </Grid>);
   }
