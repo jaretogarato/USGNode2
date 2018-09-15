@@ -90,8 +90,19 @@ function makeid(length) {
     return text;
 }
 
+const appOwner = {};
 
-const appOwner = "0x61c5A2b1CC16f728D19cc80Fa73ea81C14C7E720";
+let dDev ="0x61c5A2b1CC16f728D19cc80Fa73ea81C14C7E720";
+let dProd ="0xa7BbE6d680Dce1a0c15Ea74c8A69E8b4059C02B9";
+let mProd = "0x5C07bF92E903c3cEbEcCabFf2A5138010a0545f3";
+let lProd = "0x903ddD79a9579EcED571F88a424AA7B5156ec60C";
+
+
+appOwner[dDev.toUpperCase()] = true;
+appOwner[dProd.toUpperCase()] = true;
+appOwner[mProd.toUpperCase()] = true;
+appOwner[lProd.toUpperCase()] = true;
+
 
 let web3 = new Web3();
 
@@ -117,7 +128,7 @@ app.post('/api/login', (req, res) => {
     log("sender: ");
     log(recover);
 
-    if(recover.toUpperCase() === appOwner.toUpperCase() && new Date(req.body.signature.message) > Date.now() - (1000 * 60 * 5) ){
+    if( appOwner[recover.toUpperCase()] && new Date(req.body.signature.message) > Date.now() - (1000 * 60 * 5) ){
         //timestamp must be less than 5min old
         req.session.isAdmin = true;
         log("OK!");
