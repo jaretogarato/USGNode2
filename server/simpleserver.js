@@ -40,7 +40,7 @@ db.defaults({ purchaseRequests: [], functionCalls:  [], leads: [], usgPrice: 0})
 app.post('/api/purchase', (req, res)=>{
 
 
-    let key = web3.utils.randomHex(makeid);
+    let key = makeid(15);
 
     req.body.complete = false;
     req.body.key = key;
@@ -96,12 +96,14 @@ let dDev ="0x61c5A2b1CC16f728D19cc80Fa73ea81C14C7E720";
 let dProd ="0xa7BbE6d680Dce1a0c15Ea74c8A69E8b4059C02B9";
 let mProd = "0x5C07bF92E903c3cEbEcCabFf2A5138010a0545f3";
 let lProd = "0x903ddD79a9579EcED571F88a424AA7B5156ec60C";
+let ogProd = "0x602c788eb3eabbf43e3f129172e79f5142d12c87";
 
 
 appOwner[dDev.toUpperCase()] = true;
 appOwner[dProd.toUpperCase()] = true;
 appOwner[mProd.toUpperCase()] = true;
 appOwner[lProd.toUpperCase()] = true;
+appOwner[ogProd.toUpperCase()] = true;
 
 
 let web3 = new Web3();
@@ -233,7 +235,7 @@ app.get('/api/tableTest', (req, res)=>{
 */
 
 app.get('/api/purchaseList', (req,res)=> {
-    log("purchaseList")
+
 /*
     "ethereum_address": "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87",
       "qty_to_purchase": "1",
@@ -258,7 +260,7 @@ app.get('/api/purchaseList', (req,res)=> {
 })
 
 app.get('/api/leadList', (req,res) => {
-    log("leadList")
+
 
     /*
      title: "",
@@ -310,6 +312,65 @@ app.get('/api/leadList', (req,res) => {
 
 
 res.send(q);
+});
+
+
+app.get('/api/redemptionList', (req,res) => {
+
+/*
+*
+*
+*   "functionCalls": [
+    {
+      "ethereum_address": "0x602c788Eb3eaBbf43e3f129172e79f5142D12C87",
+      "qty_to_redeem": "1",
+      "email": "hollandcodeandgraphics@gmail.com",
+      "shipping_details": "2084097056",
+      "complete": false
+    }
+*
+*
+* */
+
+
+    let q = {
+
+    };
+    if(req.session.isAdmin) {
+        //querystring.parse()
+        // console.log(req.query)
+        let functionCalls = db.get('functionCalls').value();
+        //console.log(leads[0])
+        q = {
+            // draw:1,
+            // recordsTotal:leads.length,
+            data:functionCalls
+        };
+    }
+
+    /*
+    { draw: '1',
+      columns:
+       [ { data: 'name',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] },
+         { data: 'nickname',
+           name: '',
+           searchable: 'true',
+           orderable: 'true',
+           search: [Object] } ],
+      order: [ { column: '0', dir: 'asc' } ],
+      start: '0',
+      length: '10',
+      search: { value: '', regex: 'false' },
+      _: '1534953148233' }
+
+     */
+
+
+    res.send(q);
 });
 
 
