@@ -214,6 +214,9 @@ class WalletControls extends Component {
     this.setState({[id]: value});
     console.log(this.state);
   }
+  loadQrs(){
+    console.log("qq")
+  }
   render() {
     const {pw, words, file} = this.state;
 
@@ -303,21 +306,39 @@ class WalletControls extends Component {
       </Grid.Row>
         <Grid.Row id="walletUnlocked">
           <Grid.Column >
-          <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
-                  inlineStyle.buttonStyle
-              } > Paper Wallet</USGButton>}>
+            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
+                    inlineStyle.buttonStyle
+                } > Paper Wallet</USGButton>}>
 
-          <Modal.Content style={inlineStyle.content}>
-          <Modal.Description>
-              <Header>Disclaimer</Header>
-              <p>Keep this safe, this is everything necessary to </p>
-              <Header>Restore Wallet</Header>
-              <Form onSubmit={this.restoreWalletSubmit}>
-                <h1>IT's A THING</h1>
-              </Form>
-              </Modal.Description>
-          </Modal.Content>
-          </Modal>
+              <Modal.Content style={inlineStyle.content}>
+                <Modal.Description>
+                    <h1>Paper Wallet</h1>
+                    <Header>Disclaimer</Header>
+                    <p>Keep this safe, this is everything necessary to control this wallet</p>
+                </Modal.Description>
+
+
+                  <Form onSubmit={this.restoreWalletSubmit}>
+                      <p>If you are sure, press: </p>
+                      <USGButton onClick={this.loadQRs} >Generate Paper Wallet</USGButton>
+
+                      <div id="public">
+                          <h3>Public Address</h3>
+                          <p>Give this to anyone who might want to send you tokens</p>
+                          <div id='paperWalletPAQR' ></div>
+                      </div>
+
+
+                      <div id="private">
+                        <h3>Private Key</h3>
+                        <p>Keep this safe from prying eyes</p>
+                        <div id='paperWalletPKQR' ></div>
+                      </div>
+
+
+                  </Form>
+              </Modal.Content>
+            </Modal>
           </Grid.Column>
       </Grid.Row>
     </Grid>);
