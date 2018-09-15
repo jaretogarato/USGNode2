@@ -19,6 +19,7 @@
     "less-loader": "^4.1.0",
     "lodash": "^4.17.5",
     "node-sass": "^4.7.2",
+    "qrcode": "^1.2.2",
     "react": "^16.2.0",
     "react-accessible-accordion": "^2.4.2",
     "react-cookie-consent": "^1.7.0",
@@ -53,7 +54,11 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-"proxy": { "/api": { "target": "http://localhost:3001" } },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3001"
+    }
+  },
   "devDependencies": {
     "datatables.net": "^1.10.19",
     "jquery": "^3.3.1"

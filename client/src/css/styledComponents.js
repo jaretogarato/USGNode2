@@ -400,7 +400,7 @@ export const HrWhite = styled.hr`
 
 // ------------ NavBar ---------------
 export const NavSpacer = styled.div`
-  height: 100px;
+  //height: 100px;
   width: 100%;
   background:rgba(255, 0, 255, 0.0);
 `

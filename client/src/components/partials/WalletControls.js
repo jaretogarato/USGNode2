@@ -30,6 +30,8 @@ import {
 } from '../../css/styledComponents';
 import Img from './Img';
 
+
+import LogoImage from '../../assets/images/us-gold-logo.png';
 import {
   Header,
   Form,
@@ -45,7 +47,9 @@ import Fade from 'react-reveal/Fade';
 import USGoldToken from '../../assets/images/usg-token.png';
 
 import {withRouter} from 'react-router-dom';
-
+let $ = require('jquery');
+let jQuery = $;
+let QRCode = require('qrcode')
 class WalletControls extends Component {
   state = {
     pw: '',
@@ -123,7 +127,10 @@ class WalletControls extends Component {
     document.body.removeChild(a);
 
   }
+  createPaperWalletSubmit = async (event) => {
+    event.preventDefault();
 
+  }
   restoreWalletSubmit = async (event) => {
 
     const {pw, words} = this.state;
@@ -214,10 +221,41 @@ class WalletControls extends Component {
     this.setState({[id]: value});
     console.log(this.state);
   }
-  loadQrs(){
-    console.log("qq")
+
+
+  async loadQrs(){
+
+
+    console.log(window.wallet[0].privateKey);
+      console.log(window.wallet[0].address);
+
+     // $("#paperWalletPAQR").QRCode()
+
+      let pk = await QRCode.toDataURL(window.wallet[0].privateKey);
+      let pub = await QRCode.toDataURL(window.wallet[0].address);
+
+      console.log(pk);
+      console.log(pub);
+
+
+      $("#paperWalletPKQR").append("<img src='"+ pk+"'>");
+      $("#paperWalletPKQR").append("<p>"+ window.wallet[0].privateKey +"</p><br/><br/>");
+
+      $("#paperWalletPAQR").append("<img src='"+ pub+"'>");
+      $("#paperWalletPAQR").append("<p>"+ window.wallet[0].address+"</p><br/><br/>");
+
+      $('body > :not(#paperWalletModal)').hide(); //hide all nodes directly under the body
+      $('#instructions').hide();
+
+      $('#paperWalletModal').css('width', "100%");
+      $('#paperWalletModal').css('height', "100%");
+
+
   }
   render() {
+
+
+
     const {pw, words, file} = this.state;
 
     let inlineStyle = {
@@ -306,22 +344,23 @@ class WalletControls extends Component {
       </Grid.Row>
         <Grid.Row id="walletUnlocked">
           <Grid.Column >
-            <Modal style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
+            <Modal id="paperWalletModal" style={inlineStyle.modal} className={"modal-dialog-centered"} trigger={<USGButton style = {
                     inlineStyle.buttonStyle
                 } > Paper Wallet</USGButton>}>
 
               <Modal.Content style={inlineStyle.content}>
-                <Modal.Description>
-                    <h1>Paper Wallet</h1>
+                <Modal.Description >
+                    <h1> <Img src={LogoImage} width={240} height={60} />  US Gold Currency Paper Wallet</h1>
                     <Header>Disclaimer</Header>
                     <p>Keep this safe, this is everything necessary to control this wallet</p>
                 </Modal.Description>
 
 
-                  <Form onSubmit={this.restoreWalletSubmit}>
-                      <p>If you are sure, press: </p>
-                      <USGButton onClick={this.loadQRs} >Generate Paper Wallet</USGButton>
-
+                  <Form onSubmit={this.createPaperWalletSubmit}>
+                      <div id="instructions">
+                        <p>If you are sure, press: </p>
+                        <USGButton onClick={this.loadQrs} >Generate Paper Wallet</USGButton>
+                      </div>
                       <div id="public">
                           <h3>Public Address</h3>
                           <p>Give this to anyone who might want to send you tokens</p>
@@ -335,6 +374,7 @@ class WalletControls extends Component {
                         <div id='paperWalletPKQR' ></div>
                       </div>
 
+                      <h4>Please print this page, then refresh your browser</h4>
 
                   </Form>
               </Modal.Content>
