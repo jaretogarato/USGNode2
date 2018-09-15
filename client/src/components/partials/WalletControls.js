@@ -50,10 +50,21 @@ import {withRouter} from 'react-router-dom';
 let $ = require('jquery');
 let jQuery = $;
 let QRCode = require('qrcode')
+
+//Returns true if it is a DOM element
+window.isElement = (o)=>{
+    return (
+        typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+            o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    );
+}
+
+
 class WalletControls extends Component {
   state = {
     pw: '',
-    words: ''
+    words: '',
+      pk: ''
   };
 
   readSingleFile(e) {
@@ -132,13 +143,13 @@ class WalletControls extends Component {
 
   }
   restoreWalletSubmit = async (event) => {
-
-    const {pw, words} = this.state;
     event.preventDefault();
+    const {pw, words, pk} = this.state;
 
-    let file = JSON.parse(window.file);
+      let file = null;
 
-    console.log(file);
+
+
     //return;
     if (localStorage.getItem('hasAccount')) {
 
@@ -153,9 +164,24 @@ class WalletControls extends Component {
       window.wallet = null;
     }
 
-    window.wallet = window.web3js.eth.accounts.wallet.decrypt(file, this.state.pw);
+      console.log("QQ")
+      console.log(window.file.length)
+      if(window.file === null || window.file === undefined || window.isElement(window.file)){
+          console.log(this.state.pk)
+        let account = window.web3js.eth.accounts.privateKeyToAccount(this.state.pk);
+          window.web3js.eth.accounts.wallet.add(account);
+          window.wallet = window.web3js.eth.accounts.wallet;
 
-    window.acct = window.wallet[0].address;
+      }
+      else  {
+          file = JSON.parse(window.file);
+          window.wallet = window.web3js.eth.accounts.wallet.decrypt(file, this.state.pw);
+      }
+
+
+
+
+    window.acct = window.wallet.address;
 
     window.wallet.save(this.state.pw);
 
@@ -316,9 +342,15 @@ class WalletControls extends Component {
                 <p>Information provided by you and the private keys generated from the information will never be transmitted to us, it will only be done on your device. Any password you create when creating or returning to use your wallet containing a US Gold Currency – USG Token is solely the responsible of the creator (you) of the wallet. We are unable to assist in the recovery of any passwords or private keys in the event they become lost, and strongly recommend that you select a compliant provider of Cold-Storage services to hold a copy of your passwords and/or private keys in the event of such a loss.</p>
                 <Header>Restore Wallet</Header>
                 <Form onSubmit={this.restoreWalletSubmit}>
+                  password:
                   <input value={pw} id={"pw"} name={"pw"} type={'password'} placeholder={"Password"} onChange={this.handleChange}/>
                   <br/>
+                  <br />
+                  backup file
                   <input onChange={this.readSingleFile} id={"file"} name={"file"} type={"file"}/>
+                    <br />
+                  OR restore from private key (used with paper wallets)
+                    <input onChange={this.handleChange} id={"pk"} name={"pk"} type={"password"}/>
                   <USGButton type='submit'>Submit</USGButton>
                 </Form>
               </Modal.Description>
