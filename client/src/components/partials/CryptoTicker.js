@@ -99,7 +99,7 @@ async function updateTicker(){
 
 
 
-            let newItem = '<li data-update="USG' + usgCount +'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG +' </li>';
+            let newItem = '<li data-update="USG' + usgCount +'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG.toFixed(3) +' </li>';
             console.log(newItem)
 
             liString += newItem;

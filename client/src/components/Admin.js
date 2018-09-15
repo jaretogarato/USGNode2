@@ -228,7 +228,7 @@ class Wallet extends Component {
 
             <Grid.Row>
                 <Grid.Column>
-                    <button onClick={this.doLogin} >doLogin</button>
+                    <USGButton onClick={this.doLogin} >Admin Login</USGButton>
                 </Grid.Column>
             </Grid.Row>
           </Grid>
