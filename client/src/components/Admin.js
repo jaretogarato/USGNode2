@@ -63,7 +63,7 @@ class Wallet extends Component {
             }
         );
     }
- state = { price: 0 }
+ state = { price: 0, number: 0, address: "" }
 
     handleChange = event => {
 
@@ -75,10 +75,25 @@ class Wallet extends Component {
         this.setState({ [id]: value });
         // console.log(this.state);
     }
+
+    handleIssueUSGSubmit = (e) => {
+        e.preventDefault();
+        const {price, number, address} = this.state;
+
+        console.log(number)
+        console.log(address)
+
+
+        console.log(window.wallet)
+        window.usg.methods.issue(address, number, "0x0000000000000000000000000000000000000000000000000000000000000000" ).send();
+        //todo "are you sure...
+
+    }
+
     handlePriceChangeSubmit = (e) =>{
         e.preventDefault();
 
-        const {price} = this.state;
+        const {price, number, address} = this.state;
         console.log(price)
 
         let toSign = {
@@ -104,17 +119,22 @@ class Wallet extends Component {
     }
 
   render() {
-      const {price} = this.state;
+      const {price, number, address} = this.state;
       const $ = require('jquery');
       $.DataTable = require('datatables.net');
     
     
     return (
       <Container fluid>
-
+          <br/><br/><br/><br/>
         <Container>
           <Grid>
 
+              <Grid.Row>
+                  <Grid.Column>
+                      <USGButton onClick={this.doLogin} >Admin Login</USGButton>
+                  </Grid.Column>
+              </Grid.Row>
 
               <Grid.Row>
                   <Grid.Column>
@@ -128,7 +148,18 @@ class Wallet extends Component {
                   </Grid.Column>
               </Grid.Row>
 
-
+              <Grid.Row>
+                  <Grid.Column>
+                      <h2>Issue USG</h2>
+                      <Form onSubmit={this.handleIssueUSGSubmit}>
+                          <Form.Field>
+                              Number: <input id={'number'} name={'number'} onChange={this.handleChange} value={number} type={"number"} />
+                              Address: <input  id={'address'} name={'address'} onChange={this.handleChange} value={address}  />
+                              <USGButton type='submit'>Issue USG</USGButton>
+                          </Form.Field>
+                      </Form>
+                  </Grid.Column>
+              </Grid.Row>
             <Grid.Row>
               <Grid.Column>
                 <h2>Leads</h2>
@@ -224,13 +255,42 @@ class Wallet extends Component {
       </Grid.Column>
       </Grid.Row>
 
+              <Grid.Row>
+                  <Grid.Column>
+                      <h2>Redemptions</h2>
+                      <Table dataSource="api/redemptionList" cols={[
+
+                          {
+                              title:"Qty.",
+                              data: "qty_to_redeem",
+                              defaultContent: ""
+                          },
+                          {
+                              title:"Email",
+                              data: "email",
+                              defaultContent: ""
+                          },
+                          {
+                              title:"Shipping",
+                              data: "shipping_details",
+                              defaultContent: ""
+                          },
+                          {
+                              title:"Eth Addr",
+                              data: "ethereum_address",
+                              defaultContent: ""
+                          },
+                          {
+                              title:"Complete",
+                              data: "complete",
+                              defaultContent: ""
+                          }
+                      ]} />
+                  </Grid.Column>
+              </Grid.Row>
 
 
-            <Grid.Row>
-                <Grid.Column>
-                    <USGButton onClick={this.doLogin} >Admin Login</USGButton>
-                </Grid.Column>
-            </Grid.Row>
+
           </Grid>
         </Container>
 

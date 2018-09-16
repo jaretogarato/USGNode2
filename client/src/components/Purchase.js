@@ -4,11 +4,12 @@ import TopBg from '../assets/images/us-gold-header-bg.jpg';
 import Footer from './partials/Footer';
 import SubmitForm from './partials/SubmitForm';
 import Fade from 'react-reveal/Fade';
+import WalletBalance from './partials/WalletBalance';
 // import WalkingLiberty from '../assets/images/walking-liberty-coin.png';
 import USGoldToken from '../assets/images/usg-token.png';
 import {
     HeroHeader, HhInnerContainer, HhTextContainer,
-    HhImageContainer, HhH1, HhH2, HhH4,
+    HhImageContainer, HhH1, HhH2,HhH3, HhH4,
     FullWidthDiv, FullWidthBgDiv,
     FlexRowContainer,
     OpenH3, OpenH4, OpenP, OpenPSmall, OpenSpanGreen, OpenSpanRed,
@@ -26,23 +27,12 @@ class Contact extends Component {
             <Container fluid>
         <HeroHeader bgImage={TopBg}>
             <Container>
-            <HhInnerContainer>
-            <HhTextContainer>
-            <HhH1>
-            Purchase USG
-        </HhH1>
-        <HhH2>
-            Call +1.800.673.5800
-        </HhH2>
-            <HhH4>
-        or fill out the form below
-            </HhH4>
-        </HhTextContainer>
-        <Fade>
-        <HhImageContainer bgImage={USGoldToken} />
-        </Fade>
-        </HhInnerContainer>
-        </Container>
+                <WalletBalance title='Purchase USG' />
+                <div style={{"marginTop":"-50px"}}>
+                    <HhH2>Call +1.800.673.5800</HhH2>
+                    <HhH3>or fill out the form below</HhH3>
+                </div>
+            </Container>
         </HeroHeader>
 
         <Grid padded>

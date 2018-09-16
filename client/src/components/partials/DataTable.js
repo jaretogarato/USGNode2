@@ -74,7 +74,6 @@ class Table extends Component {
             <div>
             <table ref="main" />
 
-            <button onClick={this.reloadTableData}>X</button>
             </div>);
     }
 
