@@ -28,6 +28,7 @@ import Users from './Users';
 import UserAgreement from './UserAgreement';
 import PurchaseSuccess from './PurchaseSuccess';
 import MediaKit from './MediaKit';
+import Branding from './Branding';
 import TokenPurchaseAgreement from './TokenPurchaseAgreement';
 // import FormWrap from './FormValidationEg';
 import ReactTrackDemo from './ReactTrackDemo';
@@ -70,7 +71,7 @@ class App extends Component {
             <Route path='/fincen' component={Fincen} />
             <Route path='/privacy' component={Privacy} />
             <Route path='/mediakit' component={MediaKit} />
-            <Route path-'./branding' component={Branding} />
+            <Route path='/branding' component={Branding} />
             <Route path='/purchasesuccess' component={PurchaseSuccess} />
             <Route path='/token-purchase-agreement' component={TokenPurchaseAgreement} />
             <Route path='/user-agreement' component={UserAgreement} />
