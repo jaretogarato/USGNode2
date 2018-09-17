@@ -15,6 +15,7 @@ import USGLogoSymbol from '../assets/images/us-gold-currency-logo-symbol.png';
 import USGLogo from '../assets/images/us-gold-currency-logo-vert.png';
 import USGLogoHz from '../assets/images/usg-currency-logo-horizontal.png';
 import USGToken from '../assets/images/usg-token.png';
+import USGSingleCube from '../assets/images/usg-single-cube.png';
 
 import {
   HeroHeader, HhInnerContainer, HhTextContainer,
@@ -88,6 +89,21 @@ class MediaKit extends Component {
                   <OpenH3 textAlign='left'>US Gold Currency Logo Horizontal</OpenH3>
                   <OpenP textAlign='left'>
                     Complete logo for use where vertical space is at a premium.
+                  </OpenP>
+                  <OpenP textAlign="right">
+                    <a href="../assets/images/usg-currency-logo-horizontal.png" download>download</a>
+                  </OpenP>
+                </Grid.Column>
+              </Grid.Row>
+
+              <Grid.Row>
+                <Grid.Column width={6}>
+                  <Image src={USGSingleCube} size='small' alt="USG Logo Symbol" />
+                </Grid.Column>
+                <Grid.Column width={8}>
+                  <OpenH3 textAlign='left'>US Gold Currency Single Cube</OpenH3>
+                  <OpenP textAlign='left'>
+                    The single cube is for an indirect brand reference. It is intended to convey the brand where the use of a symbol that is less complex than the full logo may be appropriate.
                   </OpenP>
                   <OpenP textAlign="right">
                     <a href="../assets/images/usg-currency-logo-horizontal.png" download>download</a>

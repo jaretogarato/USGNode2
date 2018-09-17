@@ -100,16 +100,13 @@ let ogProd = "0x602c788eb3eabbf43e3f129172e79f5142d12c87";
 let jDev = "0x67cdc3D2D90aC5FEb6C55E0B1B36e72cC6b23Fc3";
 let jProd = "0x2317B40d370d851d740aF95a4d1F1Fa55dBe3e11";
 
-
 appOwner[dDev.toUpperCase()] = true;
 appOwner[dProd.toUpperCase()] = true;
 appOwner[mProd.toUpperCase()] = true;
 appOwner[lProd.toUpperCase()] = true;
 appOwner[ogProd.toUpperCase()] = true;
 
-
 let web3 = new Web3();
-
 
 /*
 

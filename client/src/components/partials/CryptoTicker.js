@@ -17,29 +17,27 @@ function o2s(o){
 
 let tickerStyles = {
     tickerWrapper: {
-
     },
     tickerDiv: {
-        position:'static',
-        left:'0px',
-        right:'0px',
-        top:'-8px',
-        backgroundColor:'black',
-        zIndex:'1999',
-        height:'24px'
+      position:'static',
+      left:'0px',
+      right:'0px',
+      top:'-8px',
+      backgroundColor:'black',
+      zIndex:'1999',
+      height:'24px'
     },
     tickerItem: {
         fontSize:'15px'
     },
     tickerItem_unch:{
         color:'white'
-
     },
     tickerItem_up: {
-        color:'lime'
+        color:'#97db44'
     },
     tickerItem_down: {
-        color:'red'
+        color:'#ff330f'
     },
     tickerItem_dim: {
         color:'grey'
@@ -47,27 +45,24 @@ let tickerStyles = {
     tickerItem_gold: {
         color:'gold'
     }
-
-
 };
 
 
 let prices = {};
 const request = require('request');
 async function getJSON(url) {
-    return new Promise((res,err) => {
-        request(url, function (error, response, body) {
-            if (!error && response.statusCode === 200) {
-                let importedJSON = JSON.parse(body);
-                res(importedJSON);
-            }
-            else {
-                err(error);
-            }
-        });
+  return new Promise((res,err) => {
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+        let importedJSON = JSON.parse(body);
+          res(importedJSON);
+        }
+      else {
+        err(error);
+      }
     });
+  });
 }
-
 
 let hasSetUSG = false;
 
@@ -76,11 +71,7 @@ async function updateTicker(){
     console.log("qq")
     //get coin list
     //https://min-api.cryptocompare.com/data/all/coinlist
-
     let liString ='';
-
-
-
 
     let coinListUrl = 'https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT';
     let coinListJson = await getJSON(coinListUrl);
@@ -94,66 +85,52 @@ async function updateTicker(){
 
     let usgCount = 0;
     for(let itmIdx in coinListJson){
+      if( count %7 === 0) {
+        let newItem = '<li data-update="USG' + usgCount +'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG.toFixed(3) +' </li>';
+        console.log(newItem)
+        liString += newItem;
+        usgCount++;
+      }
 
-        if( count %7 === 0) {
+      if(coinListJson[itmIdx] <= 0){
+        continue;
+      }
+      let val = (1/coinListJson[itmIdx]).toFixed(3);
+      let style = tickerStyles.tickerItem_unch;
+      let symbol = '';
 
-
-
-            let newItem = '<li data-update="USG' + usgCount +'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_gold) +'"> USG $'+ usgPriceJson.USG.toFixed(3) +' </li>';
-            console.log(newItem)
-
-            liString += newItem;
-
-            usgCount++;
-
+      if(prices[itmIdx] === undefined ){
+        let rand = Math.random();
+        if(rand > .7){
+          style = tickerStyles.tickerItem_down;
+          symbol = "▼";
         }
-
-
-        if(coinListJson[itmIdx] <= 0){
-            continue;
+        else if(rand > .6){
+          style = tickerStyles.tickerItem_up;
+          symbol = "▲";
         }
-        let val = (1/coinListJson[itmIdx]).toFixed(3);
-        let style = tickerStyles.tickerItem_unch;
-        let symbol = '';
+      }
+      else if(  prices[itmIdx] > val){
+        style = tickerStyles.tickerItem_down;
+        symbol = "▼";
+      }
+      else if(  prices[itmIdx] < val){
+        style = tickerStyles.tickerItem_up;
+        symbol = "▲";
+      }
 
-        if(prices[itmIdx] === undefined ){
-            let rand = Math.random();
-            if(rand > .7){
-                style = tickerStyles.tickerItem_down;
-                symbol = "▼";
-            }
-            else if(rand > .6){
-                style = tickerStyles.tickerItem_up;
-                symbol = "▲";
-            }
-        }
-        else if(  prices[itmIdx] > val){
-            style = tickerStyles.tickerItem_down;
-            symbol = "▼";
-        }
-        else if(  prices[itmIdx] < val){
-            style = tickerStyles.tickerItem_up;
-            symbol = "▲";
-        }
-
-
-        liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(style) +'">'+itmIdx+ symbol+' $'+ val+' </li>' ;
-
-        prices[itmIdx] = val;
-
-        count++;
+      liString += '<li data-update="'+ itmIdx+'" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(style) +'">'+itmIdx+ symbol+' $'+ val+' </li>' ;
+      prices[itmIdx] = val;
+      count++;
     }
 
     liString += '<li data-update="attribution" style="'+ o2s(tickerStyles.tickerItem) + " " + o2s(tickerStyles.tickerItem_dim) +'">(prices provided by cryptocompare.com)</li>' ;
 
     $("#ticker").webTicker('update',
-
-
-
-        liString,
-        'swap',
-        true,
-        false
+      liString,
+      'swap',
+      true,
+      false
     );
 
 
@@ -164,21 +141,13 @@ async function updateTicker(){
 
     //iterate over list of top 42 (as of 9/13/2018)
     //https://min-api.cryptocompare.com/data/price?fsym=USD&tsyms=BTC,ETH,XRP,BCH,EOS,XLM,LTC,XMR,ADA,DASH,MIOTA,TRX,NEO,ETC,XEM,XTZ,VET,DOGE,ZEC,OMG,LSK,ONT,BTG,BCN,NANO,DCR,QTUM,BCD,ZRX,BTS,ZIL,DGB,MKR,ICX,WAVES,AE,STEEM,XVG,SC,BTM,ETP,BAT
-
-
 }
 
 class Ticker extends Component {
 
     constructor(props) {
         super(props);
-
-
-
     }
-
-
-
 
     componentDidMount() {
         console.log(this.props)
@@ -202,27 +171,14 @@ class Ticker extends Component {
         return false;
     }
     render() {
-
-
-
-        return (
-                <div>
-
-
-
-                    <ul ref={'tickerList'} name="ticker" id='ticker' style={tickerStyles.tickerDiv}>
-                        <li style={{...tickerStyles.tickerItem, ...tickerStyles.tickerItem_unch }}>Cryptocurrency Market: </li>
-
-
-                    </ul>
-
-                </div>
-
-
-                );
+      return (
+        <div>
+          <ul ref={'tickerList'} name="ticker" id='ticker' style={tickerStyles.tickerDiv}>
+              <li style={{...tickerStyles.tickerItem, ...tickerStyles.tickerItem_unch }}>Cryptocurrency Market: </li>
+          </ul>
+        </div>
+      );
     }
-
-
 }
 
 export default withRouter(Ticker);
