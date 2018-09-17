@@ -28,6 +28,7 @@ import Users from './Users';
 import UserAgreement from './UserAgreement';
 import PurchaseSuccess from './PurchaseSuccess';
 import MediaKit from './MediaKit';
+import Branding from './Branding';
 import TokenPurchaseAgreement from './TokenPurchaseAgreement';
 // import FormWrap from './FormValidationEg';
 import ReactTrackDemo from './ReactTrackDemo';
@@ -39,23 +40,16 @@ import '../css/fonts.css';
 import '../css/semantic-ui/semantic.min.css';
 import Ticker from './partials/CryptoTicker';
 
-
-
 class App extends Component {
-
   constructor(props){
     super(props);
-
   }
-
   render() {
      // console.log(this.context.router.location.pathname)
       console.log(this);
 
-
     return (
       <div>
-
         <Ticker />
         <br />
         <NavBar />
@@ -77,11 +71,11 @@ class App extends Component {
             <Route path='/fincen' component={Fincen} />
             <Route path='/privacy' component={Privacy} />
             <Route path='/mediakit' component={MediaKit} />
+            <Route path='/branding' component={Branding} />
             <Route path='/purchasesuccess' component={PurchaseSuccess} />
             <Route path='/token-purchase-agreement' component={TokenPurchaseAgreement} />
             <Route path='/user-agreement' component={UserAgreement} />
             {/* <Route path='/form-validation-eg' component={FormWrap} /> */}
-
 
             <Route exact path='/register' component={AccountNew} />
             <Route exact path='/registration-pending' component={RegistrationPending} />

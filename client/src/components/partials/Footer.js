@@ -226,9 +226,15 @@ class Footer extends React.Component {
                     </OpenP>
                   </a>
 
-                  <a href="/mediakit" alt="media kit">
+                  {/* <a href="/mediakit" alt="media kit">
                     <OpenP color='white' deco='underline' textAlign='left' paddingBottom='0.5em'>
                       Media Kit
+                    </OpenP>
+                  </a> */}
+
+                  <a href="/branding" alt="branding">
+                    <OpenP color='white' deco='underline' textAlign='left' paddingBottom='0.5em'>
+                      Branding
                     </OpenP>
                   </a>
 
