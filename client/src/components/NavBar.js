@@ -8,6 +8,7 @@ import { NavStyled, NavLinks } from '../css/styledComponents';
 import NavLink from './NavLink';
 import MemberAccount from './members/MemberAccount';
 import LogoImage from '../assets/images/us-gold-logo.png';
+import LogoImageNew from '../assets/images/usg-currency-logo-horizontal.png';
 import '../css/fonts.css';
 import '../css/styles.css';
 import '../css/semantic-ui/semantic.min.css';
@@ -56,7 +57,8 @@ class NavBar extends Component {
         <div className='navWrap'>
           <div className='navLogo'>
             <a href="/" alt="US Gold Currency">
-              <Img src={LogoImage} width={240} height={60} marginTop='24px' />
+              {/* <Img src={LogoImage} width={240} height={60} marginTop='24px' /> */}
+              <Img src={LogoImageNew} width={240} height={60} marginTop='24px' />
             </a>
           </div>
             { this.mainNavs() }
@@ -77,11 +79,11 @@ class NavBar extends Component {
         <NavLink name='About' to='/about' isCurrent={this.isRouteCurrent('/about')} />
         {/* <NavLink name='Services' to='/services' isCurrent={this.isRouteCurrent('/services')} /> */}
         <NavLink name='Token' to='/token' isCurrent={this.isRouteCurrent('/token')} />
-      <NavLink name='Purchase' to='/purchase' isCurrent={this.isRouteCurrent('/purchase')} />
+        <NavLink name='Purchase' to='/purchase' isCurrent={this.isRouteCurrent('/purchase')} />
         <NavLink name='Wallet' to='/wallet' isCurrent={this.isRouteCurrent('/wallet')} />
         <NavLink name='Redeem' to='/redeem' isCurrent={this.isRouteCurrent('/redeem')} />
-      <NavLink name='Contact' to='/contact' isCurrent={this.isRouteCurrent('/contact')} />
-          <NavLink name='Media' to='/mediakit' isCurrent={this.isRouteCurrent('/mediakit')} />
+        <NavLink name='Contact' to='/contact' isCurrent={this.isRouteCurrent('/contact')} />
+        {/* <NavLink name='Media' to='/mediakit' isCurrent={this.isRouteCurrent('/mediakit')} /> */}
         <NavLink name='Resources' to='/resources' isCurrent={this.isRouteCurrent('/resources')} />
         {/* <p>{this.props.user.id ? this.props.user.id : "nothing here"}</p> */}
       </NavLinks>

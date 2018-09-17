@@ -39,10 +39,10 @@ class MediaKit extends Component {
             <HhInnerContainer>
               <HhTextContainer>
                 <HhH1>
-                  Media
+                  Branding
                 </HhH1>
                 <HhH2>
-                  Kit
+                  Guidelines and Assets
                 </HhH2>
               </HhTextContainer>
               <Fade>

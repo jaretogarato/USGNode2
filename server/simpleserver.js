@@ -54,7 +54,7 @@ app.post('/api/purchase', (req, res)=>{
 
 
 app.post('/api/redeem', (req, res)=>{
-    
+
     console.log("qq");
     req.body.complete = false;
     db.get('functionCalls')
@@ -66,7 +66,7 @@ app.post('/api/redeem', (req, res)=>{
 });
 
 app.post('/api/leads', (req, res)=>{
-    
+
     console.log("qq");
     req.body.complete = false;
     db.get('leads')
@@ -97,6 +97,8 @@ let dProd ="0xa7BbE6d680Dce1a0c15Ea74c8A69E8b4059C02B9";
 let mProd = "0x5C07bF92E903c3cEbEcCabFf2A5138010a0545f3";
 let lProd = "0x903ddD79a9579EcED571F88a424AA7B5156ec60C";
 let ogProd = "0x602c788eb3eabbf43e3f129172e79f5142d12c87";
+let jDev = "0x67cdc3D2D90aC5FEb6C55E0B1B36e72cC6b23Fc3";
+let jProd = "0x2317B40d370d851d740aF95a4d1F1Fa55dBe3e11";
 
 
 appOwner[dDev.toUpperCase()] = true;
@@ -453,4 +455,3 @@ app.post('/recordFunctionCall', (req, res)=>{
 });
 
 */
-

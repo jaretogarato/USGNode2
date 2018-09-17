@@ -30,6 +30,9 @@ import GoldBarsHoriz from '../assets/images/gold-bars-horiz.jpg';
 import CubesTwo from '../assets/images/cubes-gold-02.png';
 import CookieConsent from "react-cookie-consent";
 import EthereumLogo from '../assets/images/ethereum-logo.jpg';
+// import USGLogoSymbol from '../assets/images/us-gold-currency-logo-symbol.png';
+import USGSingleCube from '../assets/images/usg-single-cube.png';
+import USGLogoSymbol from '../assets/images/us-gold-currency-logo-symbol.png';
 
 // USGInUSD in is master value for entire application
 import {USGInUSD} from './partials/USGInUSD';
@@ -155,9 +158,7 @@ class Home extends Component {
                 <Grid.Column>
                   <FlexRowContainer>
                     <div>
-                      {/* <Img src={BricksGold} width={127} height={80} mode='fit' alt="Gold bricks" /> */}
-                      <Img src={CubeGold} width={127} height={110} mode='fit' alt="Gold bricks" />
-
+                      <Img src={USGSingleCube} width={127} height={110} mode='fit' alt='usg single cube' />
                     </div>
                     <OpenP>
                       Each USG token is backed by an American Eagle one ounce gold coin, minted by the United States Mint, and may be redeemed any time for the physical coin.
@@ -170,7 +171,8 @@ class Home extends Component {
                       <Img src={InfinityBlue} width={127} height={80} mode='fit' alt="Infinity symbol" />
                     </div> */}
                     <div>
-                      <Img src={CubesTwo} width={127} height={118} mode='fit' alt="US Gold Currency Symbol" />
+                      <Img src={USGLogoSymbol} width={127} height={118} mode='fit' alt="US Gold Currency Symbol" />
+                      {/* USGLogoSymbol */}
                     </div>
 
                     <OpenP>
