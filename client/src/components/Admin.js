@@ -79,14 +79,21 @@ class Wallet extends Component {
     handleIssueUSGSubmit = (e) => {
         e.preventDefault();
         const {price, number, address} = this.state;
-
+/*
         console.log(number)
         console.log(address)
+*/
+        if(!window.confirm("Are you sure you want to issue USG? This cannot be undone.")){
+            return;
+        }
 
 
-        console.log(window.wallet)
+        /*
+        * TODO: allow notes
+        * */
+
         window.usg.methods.issue(address, number, "0x0000000000000000000000000000000000000000000000000000000000000000" ).send();
-        //todo "are you sure...
+
 
     }
 
