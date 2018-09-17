@@ -20,6 +20,10 @@ class RedeemForm extends Component {
     const { ethereum_address, qty_to_redeem, shipping_details, email } = this.state;
     const { dispatch, history } = this.props;
 
+      if(!window.confirm("Are you sure you want to redeem USG? This cannot be undone.")){
+          return;
+      }
+
     // TODO: better error checking
     if (false) {
       console.log('Please complete all fields');

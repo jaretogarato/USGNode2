@@ -26,7 +26,11 @@ class WalletForm extends Component {
     const { dispatch, history } = this.props;
 
     // TODO: better error checking
-   
+
+      if(!window.confirm("Are you sure you want to send USG? This cannot be undone.")){
+          return;
+      }
+
     if (false) {
       console.log('Please complete all fields');
     } else {
