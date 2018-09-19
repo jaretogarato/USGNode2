@@ -376,7 +376,7 @@ export const OpenH4 = styled.h4`
 `
 export const OpenH5 = styled.h5`
   height: auto;
-  color: ${ props => props.color || '#4c4c4c' }
+  color: ${ props => props.color || '#4c4c4c' };
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   font-size: 16px;
